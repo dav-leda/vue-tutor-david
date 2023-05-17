@@ -3,6 +3,8 @@
 # Curso Vue.js 💻️ 🛠️
 ## Tutor: David Leda
 
+---
+
 Hola 🙋‍♂️️ Aquí les paso algunas recomendaciones para el entregable 1: __Contador con Vue__.
 
 __1.__ Recuerden instalar la extensión [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) para Visual Studio Code. Una vez instalada deben darle click derecho sobre el archivo .html que quieran abrir y seleccionan _Open with Live Server_. Ahí van a poder ver su proyecto corriendo en el browser (Chrome, Edge, o el que usen).
