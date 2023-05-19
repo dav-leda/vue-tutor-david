@@ -11,7 +11,7 @@ __1.__ Recuerden instalar la extensión [Live Server](https://marketplace.visual
 
 __2.__ Luego abran la consola del browser con la tecla F12 (o Shift Ctrl J) y chequeen que no les esté dando ningún error. Antes de hacer las entregas siempre revisen si el proyecto no les está tirando algún error por consola. Si no pueden solucionar el error, no hay problema, pueden entregar igual, pero en ese caso avisen al hacer la entrega: "Me está dando tal error por consola."
 
-__3.__ Si es posible, traten de hacer la entrega enviando __el link al repositorio en GitHub__, no en un archivo .zip
+__3.__ Traten de hacer la entrega enviando __el link al repositorio en GitHub, no en un archivo .zip, ni un link de Dropbox o Google Drive.__ Sería bueno que se vayan acostumbrando a usar GitHub, porque más tarde lo van a tener que usar.
 
 __4.__ Para el CSS pueden usar lo que quieran, __no es obligatorio usar Bootstrap__. Puede ser CSS puro, o SASS, o algún otro framework como Tailwind o Bulma. O también pueden entregar sin CSS. Mientras la parte de Vue funcione es suficiente ✔️
 
