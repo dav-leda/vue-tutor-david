@@ -17,6 +17,12 @@ __4.__ Para el CSS pueden usar lo que quieran, __no es obligatorio usar Bootstra
 
 __5.__ No es necesario que el número del contador esté dentro de un tag del tipo _input readonly_, puede estar dentro de un `<span>` o un `<p>`. 
 
+__6.__ Si ponen el `<script>` dentro del `<head>` no se olviden de incluir el atributo `defer`, para que el script sea ejecutado luego de que el html haya sido renderizado:
+
+```html
+<script src="app.js" defer></script> 
+```
+
 Acá les paso [un ejemplo](https://dav-leda.github.io/vue3-ts-counter/) de cómo debería quedar (no es necesario que se vea exactamente igual, sólo el funcionamiento).
 
 Cualquier duda que tengan me pueden escribir por [Discord](https://discord.gg/nY6xWbDm) o por la plataforma de Coder House 💬️
