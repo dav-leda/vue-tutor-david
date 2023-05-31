@@ -4,5 +4,7 @@
 
 ---
 
-[Entregable 1](./entregable-contador/)
+[Entregable 1: Contador](./entregable-contador/)
+
+[Entregable 2: Componentes](./entregable-componentes/)
 
