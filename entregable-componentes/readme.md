@@ -15,7 +15,7 @@ __4. Componentes:__ La idea es crear un componente de una tabla y que este compo
 
 <a href="https://vue-entregable-componentes.netlify.app/" target="_blank">https://vue-entregable-componentes.netlify.app/</a>
 
-__5. Anidación de bucles `v-for`:__ Al haber dos bucles `v-for` anidados (uno para las 3 tablas, otro para los productos dentro de cada tabla) van a necesitar __2 niveles de iteración__. En el `v-for` sobre el componente de la tabla (que se puede llamar `<table-component>` o como quieran) para que se repitan la 3 tablas, luego otro `v-for` sobre el elemento `<tr>` del `<tbody>` del componente de la tabla para que se repitan las 3 filas (o pueden ser más de 3).
+__5. Anidación de bucles `v-for`:__ Al haber dos bucles `v-for` anidados (uno para las 3 tablas, otro para los items dentro de cada tabla) van a necesitar __2 niveles de iteración__. En el `v-for` sobre el componente de la tabla (que se puede llamar `<table-component>` o como quieran) para que se repitan la 3 tablas, luego otro `v-for` sobre el elemento `<tr>` del `<tbody>` del componente de la tabla para que se repitan las 3 filas (o pueden ser más de 3).
 
 __6. Array en `data`:__ Al haber dos niveles de iteración, en `data` van a necesitar declarar un array que dentro contenga 3 arrays, cada uno con al menos 3 objetos (para cada una de las filas) y cada objeto con al menos 3 propiedades (para cada una de las columnas). Si son productos las propiedades pueden ser: nombre, precio, categoría, stock, etc. Si son personas: nombre, apellido, mail, edad, etc.
 
@@ -31,7 +31,7 @@ __8. key:__ Recuerden que el `v-for` siempre tiene que incluir un [key](https://
 
 __9. `for...in`:__ Aunque en JavaScript nativo (también llamado _Vanilla JS_) `for...in` se usa [para iterar sobre propiedades de objetos](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Statements/for...in) mientras que `for...of` se usa [para iterar sobre arrays](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Statements/for...of), en Vue se puede iterar sobre un array de cualquiera de las dos formas, aunque en la documentación de Vue [siempre usan __in__ en vez de __of__](https://es.vuejs.org/v2/guide/list.html#v-for-con-un-Componente) 🤷‍♂️️ Les recomiendo que usen __in__, porque es lo que se suele usar en Vue:
 
-```html
+```
 <tr v-for="product in products" :key="product.id">
   <td>{{ product.name }}</td>
   <td>{{ product.price }}</td>
