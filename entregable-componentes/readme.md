@@ -56,7 +56,34 @@ Y luego en `index.html` el componente de la tabla recibe las props mediante un `
 />
 ```
 
-__11. Nombres de los componentes:__ En Vue CDN la convención es nombrar a los componentes usando __kebab-case__. Pero en proyectos con [Vue SFC](https://es.vuejs.org/v2/guide/single-file-components.html) lo más usual (aunque no obligatorio) es utilizar __PascalCase__. Vue SFC lo vamos a usar a partir de la clase 5 (es lo que en las diapos de CH se nombra, erróneamente, como [Vue CLI](https://frontendlab.vercel.app/vue/vue2-vue3/#vue-cli-2-vs-vue-cli-3)) 🤦‍♂️️
+__11. Declaración de componentes:__ Recuerden que para poder usar un componente dentro de `index.html` debe estar declarado en `components`, como en este ejemplo:
+
+https://github.com/dav-leda/vue-cdn-components-props/blob/master/main.js
+
+Para declararlo no es necesario usar __kebab-case__:
+
+```js
+// app.js
+
+components: {
+  'componente-uno': ComponenteUno
+}
+```
+Puede estar declarado en `components` usando __PascalCase__ y ser usado en el template (o en `index.html`) como __kebab-case__:https://github.com/dav-leda/vue-cdn-components-props/blob/master/main.js
+
+```js
+// app.js
+
+components: {
+  TableComponent
+}
+```
+
+Vue hace la conversión automática de un formato a otro:
+
+```html
+<componente-uno :colors-prop="colorsData"/>
+```
 
 __12. Inline HTML:__ Para poder ver más claramente el código HTML dentro del _template_ del componente les recomiendo que instalen la extensión __Inline HTML__ para VS Code:
 
