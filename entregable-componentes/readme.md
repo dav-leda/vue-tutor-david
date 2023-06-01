@@ -75,7 +75,7 @@ Puede estar declarado en `components` usando __PascalCase__ y ser usado en el te
 // app.js
 
 components: {
-  TableComponent
+  ComponenteUno
 }
 ```
 
