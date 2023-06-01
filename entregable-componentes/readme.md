@@ -69,7 +69,7 @@ components: {
   'componente-uno': ComponenteUno
 }
 ```
-Puede estar declarado en `components` usando __PascalCase__ y ser usado en el template (o en `index.html`) como __kebab-case__:https://github.com/dav-leda/vue-cdn-components-props/blob/master/main.js
+Puede estar declarado en `components` usando __PascalCase__
 
 ```js
 // app.js
@@ -78,8 +78,7 @@ components: {
   ComponenteUno
 }
 ```
-
-Vue hace la conversión automática de un formato a otro:
+Y luego ser usado en el template (o en `index.html`) como __kebab-case__. Vue hace la conversión automática de un formato a otro:
 
 ```html
 <componente-uno :colors-prop="colorsData"/>
