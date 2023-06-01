@@ -78,7 +78,7 @@ components: {
   ComponenteUno
 }
 ```
-Y luego ser usado en el template (o en `index.html`) como __kebab-case__. Vue hace la conversión automática de un formato a otro:
+Y luego ser usado en el template (o en `index.html`) con __kebab-case__. Vue hace la conversión automática de un formato a otro:
 
 ```html
 <componente-uno :colors-prop="colorsData"/>
