@@ -31,11 +31,9 @@ __8. key:__ Recuerden que el `v-for` siempre tiene que incluir un [key](https://
 
 __9. `for...in`:__ Aunque en JavaScript nativo (también llamado _Vanilla JS_) `for...in` se usa [para iterar sobre propiedades de objetos](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Statements/for...in) mientras que `for...of` se usa [para iterar sobre arrays](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Statements/for...of), en Vue se puede iterar sobre un array de cualquiera de las dos formas, aunque en la documentación de Vue [siempre usan __in__ en vez de __of__](https://es.vuejs.org/v2/guide/list.html#v-for-con-un-Componente) 🤷‍♂️️ Les recomiendo que usen __in__, porque es lo que se suele usar en Vue:
 
-```
+```html
 <tr v-for="product in products" :key="product.id">
   <td>{{ product.name }}</td>
-  <td>{{ product.price }}</td>
-  <td>{{ product.stock }}</td>
 </tr>
 ```
 
@@ -58,7 +56,9 @@ Y luego en `index.html` el componente de la tabla recibe las props mediante un `
 
 __11. Declaración de componentes:__ Recuerden que para poder usar un componente dentro de `index.html` debe estar declarado en `components`, como en este ejemplo:
 
-https://github.com/dav-leda/vue-cdn-components-props/blob/master/main.js
+<a href="https://github.com/dav-leda/vue-cdn-components-props/blob/master/main.js" target="_blank">https://github.com/dav-leda/vue-cdn-components-props/blob/master/main.js</a>
+
+
 
 Para declararlo no es necesario usar __kebab-case__:
 
@@ -86,7 +86,10 @@ Y luego ser usado en el template (o en `index.html`) con __kebab-case__. Vue hac
 
 __12. Inline HTML:__ Para poder ver más claramente el código HTML dentro del _template_ del componente les recomiendo que instalen la extensión __Inline HTML__ para VS Code:
 
-https://marketplace.visualstudio.com/items?itemName=pushqrdx.inline-html
+
+
+<a href="https://marketplace.visualstudio.com/items?itemName=pushqrdx.inline-html" target="_blank">https://marketplace.visualstudio.com/items?itemName=pushqrdx.inline-html</a>
+
 
 Esto es porque al ser un _template literal_ dentro de un archivo .js les va a aparecer todo el HTML del mismo color, con lo cual resulta difícil distinguir los elementos.
 
@@ -133,7 +136,8 @@ Otra forma más simple aún es [simular una API REST con GitHub Pages](https://f
 
 Y así pueden acceder al archivo .json servido desde GitHub:
 
-https://dav-leda.github.io/api/tables/
+<a href="https://dav-leda.github.io/api/tables/" target="_blank">https://dav-leda.github.io/api/tables/</a>
+
 
 Y para usar `fetch` dentro de un _method_ pueden hacerlo así:
 
