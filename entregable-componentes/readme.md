@@ -64,16 +64,14 @@ Para declararlo no es necesario usar __kebab-case__:
 
 ```js
 // app.js
-
 components: {
   'componente-uno': ComponenteUno
 }
 ```
-Puede estar declarado en `components` usando __PascalCase__
+Puede ser declarado usando __PascalCase__:
 
 ```js
 // app.js
-
 components: {
   ComponenteUno
 }
@@ -132,7 +130,7 @@ __14. Opcional:__ Aunque la consigna no lo pide sería bueno que usen `fetch` pa
 
 Para poder tener la información de las tablas en una API REST lo más simple es que usen [MockApi](https://mockapi.io/).
 
-Otra forma más simple aún es [simular una API REST con GitHub Pages](https://frontendlab.vercel.app/vue/fetch-en-vue/#simulando-una-api-rest).
+Otra forma más simple aún es <a href="https://frontendlab.vercel.app/vue/fetch-en-vue/#simulando-una-api-rest" target="_blank">simular una API REST con GitHub Pages</a>.
 
 Y así pueden acceder al archivo .json servido desde GitHub:
 
