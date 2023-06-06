@@ -49,6 +49,12 @@ __5. PNPM:__ Les recomiendo que en lugar de `npm` usen [pnpm](https://pnpm.io/) 
 npm install -g pnpm
 ```
 
+Y luego, para crear un proyecto de Vue 3 + Vite con `pnpm`:
+
+```sh
+pnpm create vue@3
+```
+
 __6. Componentes:__ Les recomiendo que borren todos los componentes que se instalaron por defecto al crear el proyecto, excepto `App.vue.`. En App.vue borren todo el contenido, ya que, como habrán visto, usa la sintaxis de la [Composition API](https://vuejs.org/api/sfc-script-setup.html) (lo que en las diapos figura, erróneamente, como Vue CLI 3) que vamos a ver al final del curso (con el `script` arriba y el `template` abajo) y crean un componente con la sintaxis de la [Options API](https://vuejs.org/guide/extras/composition-api-faq.html#will-options-api-be-deprecated) (lo que en las diapos figura, erróneamente, como Vue CLI 2):
 
 ```html
