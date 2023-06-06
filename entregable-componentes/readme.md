@@ -84,8 +84,6 @@ Y luego ser usado en el template (o en `index.html`) con __kebab-case__. Vue hac
 
 __12. Inline HTML:__ Para poder ver más claramente el código HTML dentro del _template_ del componente les recomiendo que instalen la extensión __Inline HTML__ para VS Code:
 
-
-
 <a href="https://marketplace.visualstudio.com/items?itemName=pushqrdx.inline-html" target="_blank">https://marketplace.visualstudio.com/items?itemName=pushqrdx.inline-html</a>
 
 
