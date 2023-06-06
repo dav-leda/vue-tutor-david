@@ -20,8 +20,9 @@ Luego abren en la terminal el directorio en el que tienen sus proyectos de Vue (
 ```sh
 npm init vue@3
 ```
+Si les pide que instalen el _package_ `create-vue` le ponen que sí.
 
-Ahí les va a pedir que ingresen el nombre del nuevo proyecto y distintas opciones. Por ahora le puden poner NO a todo.
+Luego les va a pedir que ingresen el nombre del nuevo proyecto y distintas opciones. Por ahora le puden poner no a todo.
 
 Luego se dirigen al dir donde está el nuevo proyecto, instalan las deps y abren VS Code:
 
