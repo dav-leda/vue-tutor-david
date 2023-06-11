@@ -44,7 +44,7 @@ Seguramente les va a aparecer en VS Code un cartel sugiriendo que instalen la ex
 
 Puede ser que Volar les subraye el tag `script` como si estuviese mal. Esto es porque Volar está pre-configurada para usar la Composition API con el tag `<script setup>` o con TypeScript, con el tag `<script lang="ts">`. Pueden ignorarlo (no afecta en nada) o pueden incluir `lang="ts"` para que desaparezca ese subrayado.
 
-__5. PNPM:__ Les recomiendo que en lugar de `npm` usen [pnpm](https://pnpm.io/) que funciona mucho más rápido. Esto es porque `pnpm` reutiliza las dependencias que ya tienen instaladas, lo cual es muy práctico si están creando varios proyectos con las mismas deps, como vamos a hacer en este curso. En cambio `npm` vuelve a instalar todo de cero para cada proyecto y funciona mucho más lento. Para poder usar `pnpm` primero deben instalarlo en forma global:
+__5. PNPM:__ Les recomiendo que en lugar de `npm` usen [pnpm](https://pnpm.io/) que funciona mucho más rápido. Esto es porque `pnpm` reutiliza las dependencias que ya tienen instaladas, lo cual es muy práctico si están creando varios proyectos con las mismas dependencias, como vamos a hacer en este curso. En cambio `npm` vuelve a instalar todo de cero para cada proyecto y funciona mucho más lento. Para poder usar `pnpm` primero deben instalarlo en forma global:
 
 ```sh
 npm install -g pnpm
