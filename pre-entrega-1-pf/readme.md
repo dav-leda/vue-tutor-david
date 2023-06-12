@@ -68,7 +68,7 @@ __9. Cards de productos:__ Cada card debe incluir el __nombre__ del producto, el
 
 __10. Información de productos:__ Como dice la consigna, la data de los productos puede provenir de archivos en formato __JSON__ o de propiedades creadas dentro de los componentes con información de prueba. Les recomiendo que lo hagan en formato __JSON__, preferentemente __de una fuente externa__, por ejemplo, [simulando una API REST con GitHub Pages](https://frontendlab.vercel.app/vue/fetch-en-vue/#simulando-una-api-rest), y luego pueden acceder a esta data usando `fetch`. 
 
-Esto es porque para la segunda pre-entrega hay que usar una fuente externa ([MockApi](https://mockapi.io/)) y sería bueno que se vayan acostumbrando a hacerlo de esta forma para que luego el cambio no les resulte tan complicado. Y además, [hay otras razones](https://frontendlab.vercel.app/vue/fetch-en-vue/#usando-fetch-en-un-e-commerce) por la que no es aconsejable que la información de productos esté *hardcodeada* en el frontend. 
+Esto es porque para la segunda pre-entrega hay que usar una fuente externa ([MockApi](https://mockapi.io/)) y sería bueno que se vayan acostumbrando a hacerlo de esta forma para que luego el cambio no les resulte tan complicado. Y además, [hay otras razones](https://frontendlab.vercel.app/vue/fetch-en-vue/#usando-fetch-en-un-e-commerce) por las que no es aconsejable que la información de productos esté *hardcodeada* en el frontend. 
 
 Para acceder al archivo JSON con `fetch` pueden hacerlo así:
 
