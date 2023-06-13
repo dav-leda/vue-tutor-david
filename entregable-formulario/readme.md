@@ -38,7 +38,7 @@ data: () => ({
 ```
 Cada una de estas propiedades dentro de `formData` debe estar conectada con cada uno de los inputs usando `v-model`. 
 
-Luego, cuando el formulario es enviado puede enviar `formData` a App.vue mediante un `emit` y de App.vue al componente de la tabla que muestra los datos mediante `props`:
+Luego, cuando el formulario es enviado, puede enviar `formData` a App.vue mediante un `emit` y de App.vue al componente de la tabla que muestra los datos mediante `props`:
 
 ```html
 <template>
@@ -140,19 +140,23 @@ this.$emit('emit-form', { ...this.formData })
 
 __9. VueForm:__ Si quieren pueden usar la librería [VueForm](https://github.com/fergaldoyle/vue-form) tal como se muestra en las diapos de la clase, pero recuerden que __VueForm sólo funciona con Vue 2, no con Vue 3__. 
 
-La documentación de VueForm no es muy clara que digamos. Les paso esta guía de lo que significa cada uno de los estados del formulario en VueForm:
+La documentación de VueForm no es muy clara que digamos. Les paso esta guía de lo que significa cada uno de los estados del formulario en __VueForm__:
 
 `formState.$submitted`: el formulario fue enviado
+<br>
 `formState.$invalid`: el formulario contiene errores
+<br>
 `formState.$touched`: el campo fue focalizado
+<br>
 `formState.$dirty`: el usuario ingresó algo en el campo pero aún no fue validado
+<br>
 `formStae.$error`: el campo contiene errores
-
+<br>
 Y luego, al usarlas como condicionales de los mensajes de validación:
 
 ```html
-<!-- Mostrar el mensaje de error si el formulario fue enviado
-y el usuario ingresó algo, pero lo que ingresó es incorrecto -->
+<!-- Mostrar el mensaje de error si el formulario fue enviado ($submitted)
+y el usuario ingresó algo ($dirty) pero lo que ingresó es incorrecto -->
 
 <div
   v-if="formState.$submitted && formState.$dirty" 
@@ -168,5 +172,4 @@ __10. Formulario sin librerías:__ Si prefieren no usar librerías [acá les pas
 
 Cualquier duda que tengan me pueden escribir, preferentemente por Discord ya que la plataforma de CH no siempre funciona bien 🤷‍♂️️
 
-<hr>
 <hr>
