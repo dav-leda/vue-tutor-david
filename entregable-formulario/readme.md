@@ -36,7 +36,7 @@ data: () => ({
   formState: {}
 })
 ```
-Cada una de estas propiedades dentr de `formData` debe estar conectada con cada uno de los inputs usando `v-model`. 
+Cada una de estas propiedades dentro de `formData` debe estar conectada con cada uno de los inputs usando `v-model`. 
 
 Luego, cuando el formulario es enviado puede enviar `formData` a App.vue mediante un `emit` y de App.vue al componente de la tabla que muestra los datos mediante `props`:
 
