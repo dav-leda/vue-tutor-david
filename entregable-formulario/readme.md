@@ -3,7 +3,7 @@
 ---
 
 
-Hola 🙋‍♂️️ Acá les paso algunas recomendaciones para entregable 3: __Formulario__
+Hola 🙋‍♂️️ Acá les paso algunas recomendaciones para entregable 4: __Formulario__
 
 
 __1. GitHub:__ Por favor hagan la entrega con __un link al repositorio en GitHub__, no en un zip ni Dropbox 🙏️🙏️🙏️
@@ -168,4 +168,5 @@ __10. Formulario sin librerías:__ Si prefieren no usar librerías [acá les pas
 
 Cualquier duda que tengan me pueden escribir, preferentemente por Discord ya que la plataforma de CH no siempre funciona bien 🤷‍♂️️
 
+<hr>
 <hr>
