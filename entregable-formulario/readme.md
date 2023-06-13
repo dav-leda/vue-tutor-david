@@ -150,7 +150,7 @@ La documentación de VueForm no es muy clara que digamos. Les paso esta guía de
 <br>
 `formState.$dirty`: el usuario ingresó algo en el campo pero aún no fue validado
 <br>
-`formStae.$error`: el campo contiene errores
+`formState.$error`: el campo contiene errores
 <br>
 <br>
 Y luego, al usarlas como condicionales de los mensajes de validación:
