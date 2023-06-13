@@ -152,6 +152,7 @@ La documentación de VueForm no es muy clara que digamos. Les paso esta guía de
 <br>
 `formStae.$error`: el campo contiene errores
 <br>
+<br>
 Y luego, al usarlas como condicionales de los mensajes de validación:
 
 ```html
