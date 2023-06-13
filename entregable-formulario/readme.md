@@ -16,7 +16,7 @@ __4. CSS: No es obligatorio usar Bootstrap__. Pueden usar CSS nativo, o SASS, o 
 
 Si tienen un archivo `.css` global lo pueden poner dentro del directorio `assets` en una carpeta que se llame `css`.
 
-__5. Formulario:__ El formulario debe contener __al menos 4 inputs__ y al menos 4 tipos distintos de input (`text`, `number`, `email`, `password`, `radio`, `checkbox`, etc). No es necesario que todos los inputs tengan validaciones, pero __al menos 4 de los inputs deben tener validaciones__ (al menos 2 validaciones, una para _campo obligatorio_ y alguna otra más).
+__5. Formulario:__ El formulario debe contener __al menos 4 inputs__ y __al menos 4 tipos distintos de input__ (`text`, `number`, `email`, `password`, `radio`, `checkbox`, etc). No es necesario que todos los inputs tengan validaciones, pero __al menos 4 de los inputs deben tener validaciones__ (al menos 2 validaciones por input, una para _campo obligatorio_ y alguna otra más).
 
 Acá les paso un ejemplo de cómo debería quedar (no es obligatorio que le quede exactamente igual, ni que los inputs sean los mismos):
 
