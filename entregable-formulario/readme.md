@@ -170,7 +170,9 @@ y el usuario ingresó algo ($dirty) pero lo que ingresó es incorrecto -->
 
 Tal como indica la documentación de __VueForm__, si el campo contiene distintos mensajes de error (_scoped messages_) debe usarse `v-if`, no `show`:
 
-https://www.npmjs.com/package/vue-form#displaying-messages
+<a href="https://www.npmjs.com/package/vue-form#displaying-messages" target="_blank">https://www.npmjs.com/package/vue-form#displaying-messages</a>
+
+
 
 __10. Formulario sin librerías:__ Si prefieren no usar librerías [acá les paso un tutorial sobre cómo hacerlo](https://frontendlab.vercel.app/vue/formulario/). __No es obligatorio que lo hagan tal cual como dice ahí__, se los paso únicamente por si les sirve como guía.
 
