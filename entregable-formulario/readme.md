@@ -16,9 +16,9 @@ __4. CSS: No es obligatorio usar Bootstrap__. Pueden usar CSS nativo, o SASS, o 
 
 Si tienen un archivo `.css` global lo pueden poner dentro del directorio `assets` en una carpeta que se llame `css`.
 
-__5. Formulario:__ El formulario debe contener __al menos 4 inputs__ y __al menos 4 tipos distintos de input__ (`text`, `number`, `email`, `password`, `radio`, `checkbox`, etc). No es necesario que todos los inputs tengan validaciones, pero __al menos 4 de los inputs deben tener validaciones__ (al menos 2 validaciones por input, una para _campo obligatorio_ y alguna otra más).
+__5. Formulario:__ El formulario debe contener __al menos 4 inputs__ y __al menos 4 tipos distintos de input__ (`text`, `number`, `email`, `password`, `radio`, `checkbox`, etc). No es necesario que todos los inputs tengan validaciones, pero __al menos 4 de los inputs deben tener validaciones__ (al menos 2 validaciones por input, una para _required_ y alguna otra más).
 
-Acá les paso un ejemplo de cómo debería quedar (no es obligatorio que le quede exactamente igual, ni que los inputs sean los mismos):
+Acá les paso un ejemplo de cómo debería quedar. No es obligatorio que les quede exactamente igual, ni que los inputs sean los mismos, se los paso únicamente como guía:
 
 <a href="https://curso-vue-formulario.vercel.app/" target="_blank">https://curso-vue-formulario.vercel.app/</a>
 
@@ -38,7 +38,7 @@ data: () => ({
 ```
 Cada una de estas propiedades dentro de `formData` debe estar conectada con cada uno de los inputs usando `v-model`. 
 
-Luego, cuando el formulario es enviado, puede enviar `formData` a App.vue mediante un `emit` y de App.vue al componente de la tabla que muestra los datos mediante `props`:
+Luego, cuando el formulario es enviado, pueden enviar `formData` a App.vue mediante un `emit`, y de App.vue a __TableComponent__ mediante `props`:
 
 ```html
 <template>
@@ -76,7 +76,7 @@ export default {
 </script>
 ```
 
-__7. Filtros de vista:__ Recuerden que si están usando Vue 3 los _filters_ no les van a funcionar, ya que [fueron deprecados](https://v3-migration.vuejs.org/breaking-changes/filters.html#filters). En Vue 3 pueden ser reemplazados por `methods`, funcionan igual:
+__7. Filtros de vista:__ Recuerden que si están usando Vue 3 los _filters_ no les van a funcionar, ya que [fueron deprecados](https://v3-migration.vuejs.org/breaking-changes/filters.html#filters). En Vue 3 pueden ser reemplazados por `methods`, que funcionan igual:
 
 ```js
 filters: {
@@ -130,7 +130,7 @@ methods: {
   }
 }
 ```
-Esto es porque el sistema de reactividad de Vue funciona por referencias a objetos. Esto quiere decir que al hacer un `push` de `formData` dentro del array de usuarios lo que estamos pusheando __no es el objeto sino una referencia__. Entonces, al vaciar las propiedades de `formData` no sólo las estamos vaciando en el componente del formulario sino también en el array de usuarios, ya que [ambas referencias apuntan al mismo objeto](https://frontendlab.vercel.app/vue/formulario/#array-push-spread-operator).
+Esto es porque el sistema de reactividad de Vue funciona por referencias a objetos. Esto quiere decir que al hacer un `push` de `formData` dentro del array de usuarios lo que estamos pusheando __no es el objeto sino una referencia__. Entonces, al vaciar las propiedades de `formData` __no sólo las estamos vaciando en el componente del formulario sino también en el array de usuarios__, ya que [ambas referencias apuntan al mismo objeto](https://frontendlab.vercel.app/vue/formulario/#array-push-spread-operator).
 
 Para evitar que esto ocurra __deben clonar el objeto__. Esto se puede hacer de distintas formas, la más simple es con un [spread operator](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Operators/Spread_syntax#spread_en_literales_tipo_objeto):
 
@@ -138,7 +138,9 @@ Para evitar que esto ocurra __deben clonar el objeto__. Esto se puede hacer de d
 this.$emit('emit-form', { ...this.formData })
 ```
 
-__9. VueForm:__ Si quieren pueden usar la librería [VueForm](https://github.com/fergaldoyle/vue-form) tal como se muestra en las diapos de la clase, pero recuerden que __VueForm sólo funciona con Vue 2, no con Vue 3__. 
+Pero recuerden que la clonación de objetos con el _spread operator_ sólo funciona con objetos simples (con un solo nivel de anidación) pero [no en objetos complejos](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax#spread_in_array_literals). Para clonar objetos complejos deben usar el método nativo de JavaScript [structuredClone](https://developer.mozilla.org/en-US/docs/Web/API/structuredClone).
+
+__9. VueForm:__ Si quieren pueden usar la librería [VueForm](https://github.com/fergaldoyle/vue-form) tal como se vio en clase, pero recuerden que __VueForm sólo funciona con Vue 2, no con Vue 3__. Para Vue 3 pueden usar [FormKit](https://formkit.com/) o [Vuelidate](https://vuelidate-next.netlify.app/).
 
 La documentación de VueForm no es muy clara que digamos. Les paso esta guía de lo que significa cada uno de los estados del formulario en __VueForm__:
 
