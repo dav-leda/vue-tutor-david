@@ -148,9 +148,9 @@ La documentación de VueForm no es muy clara que digamos. Les paso esta guía de
 <br>
 `formState.$touched`: el campo fue focalizado
 <br>
-`formState.$dirty`: el usuario ingresó algo en el campo pero aún no fue validado
+`formState.$dirty`: el usuario ingresó algo en el campo
 <br>
-`formState.$error`: el campo contiene errores
+`formState.$error`: objeto con los errores que contiene el campo
 <br>
 <br>
 Y luego, al usarlas como condicionales de los mensajes de validación:
@@ -165,6 +165,10 @@ y el usuario ingresó algo ($dirty) pero lo que ingresó es incorrecto -->
   class="alert alert-danger"
 >Este campo requiere como mínimo 2 caracteres.</div>
 ```
+
+Tal como indica la documentación de __VueForm__, si el campo contiene distintos mensajes de error (_scoped messages_) debe usarse `v-if`, no `show`:
+
+https://www.npmjs.com/package/vue-form#displaying-messages
 
 __10. Formulario sin librerías:__ Si prefieren no usar librerías [acá les paso un tutorial sobre cómo hacerlo](https://frontendlab.vercel.app/vue/formulario/). __No es obligatorio que lo hagan tal cual como dice ahí__, se los paso únicamente por si les sirve como guía.
 
