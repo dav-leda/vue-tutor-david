@@ -97,9 +97,12 @@ Y en el template:
 <tbody>
   <tr v-for="(user, i) in users" :key="i">
     <!-- Usando filters -->
+    {% raw %}
     <td>{{ user.nombre | capitalize }}</td>
+    
     <!-- Usando methods -->
     <td>{{ capitalize(user.nombre) }}</td>
+    {% endraw %}
   </tr>
 </tbody>
 ```
