@@ -23,19 +23,23 @@ __7. Array de colores:__ Cada una de las 3 tablas tiene que tener un color de fo
 
 __8. key:__ Recuerden que el `v-for` siempre tiene que incluir un [key](https://es.vuejs.org/v2/guide/list.html#key) para que cada elemento de la iteración tenga una identificación única en el [DOM](https://developer.mozilla.org/es/docs/Glossary/DOM). Lo ideal es que el `key` sea el `id` del item dentro del array (`item.id` o como lo hayan llamado) ya que el `id` por definición es único. Pero si el objeto no tiene una propiedad `id` se puede usar __el índice del array__ como `key`:
 
+{% raw %}
 ```html
 <tr v-for="(product, i) in products" :key="i">
   <td>{{ product.name }}</td>
 </tr>
 ```
+{% endraw %}
 
 __9. `for...in`:__ Aunque en JavaScript nativo (también llamado _Vanilla JS_) `for...in` se usa [para iterar sobre propiedades de objetos](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Statements/for...in) mientras que `for...of` se usa [para iterar sobre arrays](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Statements/for...of), en Vue se puede iterar sobre un array de cualquiera de las dos formas, aunque en la documentación de Vue [siempre usan __in__ en vez de __of__](https://es.vuejs.org/v2/guide/list.html#v-for-con-un-Componente) 🤷‍♂️️ Les recomiendo que usen __in__, porque es lo que se suele usar en Vue:
 
+{% raw %}
 ```html
 <tr v-for="product in products" :key="product.id">
   <td>{{ product.name }}</td>
 </tr>
 ```
+{% endraw %}
 
 __10. Props:__ Para pasar el array de productos desde el ciclo `v-for` en index.html al componente de la tabla recuerden que tienen que usar __props__. Y para que el componente de la tabla pueda recibir esas props tienen que declararlas en ese componente indicando el tipo de dato (en este caso, Array):
 
