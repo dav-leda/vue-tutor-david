@@ -160,6 +160,44 @@ Luego de hacer Login como admin van a ver que en el dropdown del usuario aparece
 
 *Si quieren probar la opción de borrar productos por favor haganlo con alguno que hayan creado ustedes, por favor no borren los productos listados.*
 
+Para la vista de agregar un nuevo producto y de actualizar un producto pueden reutilizar el mismo componente, cambiando únicamente el _id_ de la ruta:
+
+En Vue Router:
+
+```js
+{
+  path: '/admin/product/:id',
+  name: 'add-update-product',
+  component: AddOrUpdateProduct
+},
+```
+
+Y en _AdminView.vue_:
+
+```js
+goToAddProduct() {
+  this.$router.push('/admin/product/new-product')
+},
+
+goToEditProduct(product) {
+  this.$router.push(`/admin/product/${product.id}`)
+},
+```
+Y luego, en el componente __AddOrUpdateProduct.vue__, si el _id_ de la ruta es `new-product` entonces `this.product` puede ser un objeto vacío o un _placeholder_ con datos iniciales. Y no es `new-product` hacer un `fetch` a MockAPI para buscar los datos del producto a ser modificado haciendo uso del _id_ de la ruta (que es igual a `product.id`):
+
+```js
+async created() {
+    
+  if (this.$route.params.id === 'new-product') {
+    this.product = placeholderProduct
+  } else {
+    this.product = await fetchService.getData(
+      `/products/${this.$route.params.id}`
+    )
+  }
+}
+```
+
 __8. Pedidos:__ La consigna dice:
 
 __*Crear un último recurso que será el carrito, integrando GET y POST para realizar y revisar pedidos.*__
@@ -322,6 +360,41 @@ La documentación de MockAPI no es muy clara al respecto. Si quieren pueden ser 
 __10. Validaciones:__ Tanto el Login como el Signup deben tener validaciones. La validación del Login es que haya un usuario con el nombre (o e-mail) ingresado y que el password coincida con el registrado. Las instrucciones sobre cómo hacer esto las pueden encontrar [acá](https://frontendlab.vercel.app/vue/simulando-un-login/).
 
 En el caso del Signup, las validaciones deben ser: que el nombre no sea ni demasiado corto ni demasiado largo, que el formato de e-mail sea correcto y que el password tenga algún tipo de condición (por ejemplo: al menos una mayúscula, al menos un número o al menos un guión). En el Signup también sería bueno chequear si no hay ya un usuario previamente registrado con ese nombre (o email). Las instrucciones sobre cómo hacer esto las pueden encontrar [acá](https://frontendlab.vercel.app/vue/simulando-un-signup/#simulando-un-signup).
+
+__11.__ Navigation guards:__ Sería bueno incluir alguna forma de bloquear el ingreso forzado a la aplicación. Esto ocurre cuando un usuario __que no está loggeado__ ingresa a la ruta de admin solamente ingresando la URL en la barra de navegación del browser:
+
+http://localhost:5173/admin
+
+Al hacer esto el usuario debería ser redirigido a la ruta de Login ('/login'). 
+
+Y lo mismo si el usuario hizo Logout y luego vuelve atrás hacia `/admin` con el botón ⬅️ del browser: nuevamente, debería ser redirigido a `/login`.
+
+Esto se puede hacer poniendo un condicional en `created()` dentro de _AdminView.vue_ o haciendo uso de las __navigation guards__ de Vue Router:
+
+```js
+router.beforeEach((to, from, next) => {
+
+  if (
+    to.path.includes('admin') && 
+    !userStore.loggedIn && 
+    !userStore.user?.isAdmin
+  ) 
+    { 
+      next({name: 'login'})
+
+    } else if (
+      to.path.includes('order') && 
+      !userStore.loggedIn
+      ) 
+        { 
+          next({name: 'login'})
+          
+        } else {
+          next()
+        }
+})
+
+```
 
 
 <hr>
