@@ -27,15 +27,17 @@ __5. Variables de entorno:__ En cuanto a la URL de MockAPI, recuerden que MockAP
 
 https://numero-de-token.mockapi.io/api/
 
-Sería bueno que guarden esta URL en una [variable de entorno](https://frontendlab.vercel.app/vue/simulando-un-login/#variables-de-entorno) de lo contrario quedaría expuesta en el repositorio y cualquiera puede usar su cuenta de MockAPI sin necesidad de crear una propia (hay bots que recorren automáticamente todos los repositorios de GitHub buscando este tipo de información). Las instrucciones sobre cómo usar variables de entorno las pueden encontrar [acá](https://frontendlab.vercel.app/vue/simulando-un-login/#variables-de-entorno).
+Sería bueno que guarden esta URL en una [variable de entorno](https://frontendlab.vercel.app/vue/simulando-un-login/#variables-de-entorno) de lo contrario quedaría expuesta en el repositorio y cualquiera puede usar su cuenta de MockAPI sin necesidad de crear una propia (hay bots que recorren automáticamente todos los repositorios de GitHub buscando este tipo de información). 
 
-__6. Estructura general del proyecto:__ Como dice la consigna, el proyecto debe incluir __Login__ y __Signup__ (registro de usuarios), __listado de productos__, __carrito de compras, listado de pedidos y __ABM de productos__. 
+Para usar variables de entorno pueden seguir las instrucciones que están [acá](https://frontendlab.vercel.app/vue/simulando-un-login/#variables-de-entorno).
+
+__6. Estructura general del proyecto:__ Como dice la consigna, el proyecto debe incluir __Login__ y __Signup__ (registro de usuarios), __listado de productos__, __carrito de compras, listado de pedidos y ABM de productos__. 
 
 Sería bueno que agrupen los componentes en distintas carpetas, según su función: los del carrito en una carpeta, los del usuario en otra, los del admin en otra. Y si usan íconos SVG, crear un componente para cada uno y ponerlos en una carpeta llamada _icons_.
 
 Y lo mismo para las vistas (views): las de admin en una, las de usuario (cliente) en otra.
 
-Y lo mismo para la lógica: la lógica del `fetch` en una carpeta llamada _services_ (esa es la convención para nombrar a los servicios de acceso a una API). Y para la lógica de las funciones reutilizables (o sea, para formatear precios, formatear fechas, guardar en _localStorage_) la convención es que la carpeta se llame _utils_ (o _helpers_).
+Y también para los archivos .js con la lógica: la lógica del `fetch` en un archivo .js dentro de una carpeta llamada _services_ (esa es la convención para nombrar a los servicios de acceso a una API). Y para la lógica de las funciones reutilizables (o sea, para formatear precios, formatear fechas, guardar en _localStorage_) la convención es que la carpeta se llame _utils_ (o _helpers_).
 
 Este es un ejemplo de cómo podría quedar la estructura de archivos del proyecto:
 
@@ -150,13 +152,13 @@ __ABM__ quiere decir __Alta, Baja, Modificación__, que es otra forma de decir _
 
 Para probar el ejemplo de Coder House el usuario es __admin@admin__ y el password __123__
 
-También pueden probar entrando como _admin_ en este otro ejemplo que armé yo (usuario: __admin1__, password: __test123__):
+También pueden probar entrando como _admin_ en este otro ejemplo armado por mí (usuario: __admin1__, password: __test123__):
 
 <a href="https://vue-bakery-2.vercel.app/" target="_blank">https://vue-bakery-2.vercel.app/</a>
 
 Luego de hacer Login como admin van a ver que en el dropdown del usuario aparecen las opciones: Mi Perfil, Pedidos, __Productos__ y Logout. Si entran a __Productos__ van a ver el __CMS de productos__ con la opción de agregar nuevos productos, editar algún dato del producto, o borrar el producto. Todos estos cambios tiene que verse reflejados en el backend de MockAPI.
 
-__*Si quieren probar la opción de borrar productos por favor haganlo con alguno que hayan creado ustedes, por favor no borren los productos listados.*__ 
+*Si quieren probar la opción de borrar productos por favor haganlo con alguno que hayan creado ustedes, por favor no borren los productos listados.*
 
 __8. Pedidos:__ La consigna dice:
 
@@ -166,7 +168,7 @@ Esto también es bastante confuso, pero queda más claro al ver el ejemplo de la
 
 Es decir, el recurso __no es para el carrito, es para pedidos.__ La información del carrito es efímera (si el usuario no completó la compra y cierra la aplicación, se borra, y si completó la compra también, porque el carrito se resetea), pero la información de pedidos completados debería ser persistida en el backend. 
 
-Hay algunos e-commerce (Mercado Libre) que persisten la información del carrito en el backend y luego la borran cuando el pedido fue realizado, y hay otros que la guardan en _localStorage_ (y también, luego de completado el pedido, la borran). En este caso, no es necesario que guarden el carrito pero sí los pedidos.
+Hay algunos e-commerce (Mercado Libre) que también persisten la información del carrito en el backend y luego la borran cuando el pedido fue realizado, y hay otros que la guardan en _localStorage_ (y también, luego de completado el pedido, la borran). En este caso, no es necesario que guarden el carrito pero sí los pedidos.
 
 El problema es que el plan gratuito de MockAPI sólo permite crear 2 recursos, y ya usamos uno para usuarios y otro para productos 🤔️ 
 
@@ -311,7 +313,11 @@ Es decir, el Login y Signup deben usar los métodos [GET](https://frontendlab.ve
 
 Sería bueno que para chequear si existe un usuario con el nombre (o email) y passwords ingresados por el usuario __no hagan este chequeo en el frontend con *find()*__. Esto es porque traer al frontend __todos los datos de todos los usuarios incluyendo sus passwords__ es considerado una mala práctica, porque de esta forma cualquier usuario que sepa usar las Dev Tools del browser __podría tener acceso a todos los passwords de todos los usuarios__ 🤦‍♂️️
 
-Para evitar esto lo que deben traer al frontend es únicamente los datos del usuario con el nombre ingresado. Para esto deben usar _queries_ siguiendo las instrucciones que están [acá](https://frontendlab.vercel.app/vue/simulando-un-login/#buscar-el-nombre-de-usuario).
+Aunque lo que estamos haciendo no sea un e-commerce real sería bueno que lo hagan de esta forma como buena práctica. 
+
+La única información que debería llegarle al frontend son los datos del usuario que está intentando hacer Login, __no de todos los usuarios__. Para poder pedirle a MockAPI únicamente este dato deben usar los [search params](https://github.com/mockapi-io/docs/wiki/Code-examples#filtering). 
+
+La documentación de MockAPI no es muy clara al respecto. Si quieren pueden ser [estas instrucciones](https://frontendlab.vercel.app/vue/simulando-un-login/#buscar-el-nombre-de-usuario).
 
 __10. Validaciones:__ Tanto el Login como el Signup deben tener validaciones. La validación del Login es que haya un usuario con el nombre (o e-mail) ingresado y que el password coincida con el registrado. Las instrucciones sobre cómo hacer esto las pueden encontrar [acá](https://frontendlab.vercel.app/vue/simulando-un-login/).
 
