@@ -360,7 +360,7 @@ __10. Validaciones:__ Tanto el Login como el Signup deben tener validaciones. La
 
 En el caso del Signup, las validaciones deben ser: que el nombre no sea ni demasiado corto ni demasiado largo, que el formato de e-mail sea correcto y que el password tenga algún tipo de condición (por ejemplo: al menos una mayúscula, al menos un número o al menos un guión). En el Signup también sería bueno chequear si no hay ya un usuario previamente registrado con ese nombre (o email). Las instrucciones sobre cómo hacer esto las pueden encontrar [acá](https://frontendlab.vercel.app/vue/simulando-un-signup/#simulando-un-signup).
 
-__11. Navigation guards:__ Sería bueno incluir alguna forma de bloquear el ingreso forzado a la aplicación. Esto ocurre cuando un usuario __que no está loggeado__ ingresa a la ruta `/admin` solamente ingresando la URL en la barra de navegación del browser:
+__11. Bloqueos de navegación:__ Sería bueno incluir alguna forma de bloquear el ingreso forzado a la aplicación. Esto ocurre cuando un usuario __que no está loggeado__ ingresa a la ruta `/admin` solamente ingresando la URL en la barra de navegación del browser:
 
 http://localhost:5173/admin
 
