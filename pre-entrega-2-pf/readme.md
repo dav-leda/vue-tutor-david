@@ -15,7 +15,7 @@ __3. Axios:__ La consigna dice que deben **integrar Axios**. Para eso recuerden 
 
 También pueden usar el método nativo `fetch` de JavaScript en lugar de Axios. Usar `fetch` les va a ahorrar unos 30Kb en el _bundle_ final. Teniendo en cuenta que todo Vue pesa unos 50Kb (o sea, Vue 3 con _tree shaking_ pesa 50Kb, Vue 2 pesa unos 70Kb) sumar 30Kb sólo para ahorrarse un par de líneas de código en la petición HTTP no tiene mucho sentido. Pero bueno, la consigna dice usar Axios, así que si quieren úsenlo 🤷‍♂️️
 
-__4. MockAPI__ La consigna dice que deben **consumir los recursos desde el backend en MockAPI.** Para crear una cuenta en [MockAPI](https://mockapi.io)  pueden seguir [estas instrucciones](https://frontendlab.vercel.app/vue/simulando-un-login/#mockapi). En MockAPI deben __crear 2 recursos: uno para productos y otro para usuarios.__ 
+__4. MockAPI:__ La consigna dice que deben **consumir los recursos desde el backend en MockAPI.** Para crear una cuenta en [MockAPI](https://mockapi.io)  pueden seguir [estas instrucciones](https://frontendlab.vercel.app/vue/simulando-un-login/#mockapi). En MockAPI deben __crear 2 recursos: uno para productos y otro para usuarios.__ 
 
 Es decir que el JSON con el listado de productos y el del listado de usuarios deben estar en MockAPI, __no *hardcodeados* dentro de los componentes en *data*__:
 
@@ -183,11 +183,10 @@ goToEditProduct(product) {
   this.$router.push(`/admin/product/${product.id}`)
 },
 ```
-Y luego, en el componente __AddOrUpdateProduct.vue__, si el _id_ de la ruta es `new-product` entonces `this.product` puede ser un objeto vacío o un _placeholder_ con datos iniciales. Y no es `new-product` hacer un `fetch` a MockAPI para buscar los datos del producto a ser modificado haciendo uso del _id_ de la ruta (que es igual a `product.id`):
+Y luego, en el componente __AddOrUpdateProduct.vue__, si el _id_ de la ruta es `new-product` entonces `this.product` puede ser un objeto vacío o un _placeholder_ con datos iniciales. Y si no es `new-product`, hacer un `fetch` a MockAPI para buscar los datos del producto a ser modificado haciendo uso del _id_ de la ruta (que es igual a `product.id`):
 
 ```js
 async created() {
-    
   if (this.$route.params.id === 'new-product') {
     this.product = placeholderProduct
   } else {
@@ -341,35 +340,35 @@ export function formattedDate() {
 
 Otra opción es guardar en el backend la fecha en bruto (`new Date()`) y luego formatearla en el momento de mostrarla.
 
-Como habrán visto, el password está _hasheado_. El password real es __test123__, lo que se guardó en MockAPI es un _hash_ de ese password. En general es considerado una buena práctica guardar los passwords en el backend en forma de _hash_ __para que ni siquiera el admin pueda saber cuáles son los passwords ingresados por los usuarios__ (ya que el _hashing_, a diferencia de la encriptación, es irreversible). No es necesario que lo hagan de esta forma, pero si quiere hacerlo las instrucciones están [acá](https://frontendlab.vercel.app/vue/simulando-un-login/#encriptacion-del-password).
+Como habrán visto, el password está _hasheado_. El password real es __test123__, lo que se guardó en MockAPI es un _hash_ de ese password. En general es considerado una buena práctica guardar los passwords en el backend en forma de _hash_ __para que ni siquiera el admin pueda saber cuáles son los passwords ingresados por los usuarios__ (ya que el _hashing_, a diferencia de la encriptación, es irreversible). No es necesario que lo hagan de esta forma, pero si quieren hacerlo pueden encontrar las instrucciones [acá](https://frontendlab.vercel.app/vue/simulando-un-login/#encriptacion-del-password).
 
 __9. Login y Signup:__ La consigna dice:
 
 __*Crear un Login y Registro de usuarios utilizando los métodos GET y POST.*__
 
-Es decir, el Login y Signup deben usar los métodos [GET](https://frontendlab.vercel.app/vue/simulando-un-login/#fetch-service) (para chequear en MockAPI si existe un usuario con el nombre y password ingresados en el caso del Login) y [POST](https://frontendlab.vercel.app/vue/simulando-un-signup/#usando-un-fetch-de-tipo-post) (para guardar los datos del usuario en MockAPI en el caso del Signup).
+Es decir, el Login y Signup deben usar los métodos [GET](https://frontendlab.vercel.app/vue/simulando-un-login/#fetch-service) (para chequear en MockAPI si existe un usuario con el nombre y password ingresados) y [POST](https://frontendlab.vercel.app/vue/simulando-un-signup/#usando-un-fetch-de-tipo-post) (para guardar los datos del usuario en MockAPI en el caso del Signup).
 
 Sería bueno que para chequear si existe un usuario con el nombre (o email) y passwords ingresados por el usuario __no hagan este chequeo en el frontend con *find()*__. Esto es porque traer al frontend __todos los datos de todos los usuarios incluyendo sus passwords__ es considerado una mala práctica, porque de esta forma cualquier usuario que sepa usar las Dev Tools del browser __podría tener acceso a todos los passwords de todos los usuarios__ 🤦‍♂️️
 
 Aunque lo que estamos haciendo no sea un e-commerce real sería bueno que lo hagan de esta forma como buena práctica. 
 
-La única información que debería llegarle al frontend son los datos del usuario que está intentando hacer Login, __no de todos los usuarios__. Para poder pedirle a MockAPI únicamente este dato deben usar los [search params](https://github.com/mockapi-io/docs/wiki/Code-examples#filtering). 
+La única información que debería llegarle al frontend son los datos del usuario que está intentando hacer Login, __no de todos los usuarios__. Para poder pedirle a MockAPI únicamente este dato deben usar [search params](https://github.com/mockapi-io/docs/wiki/Code-examples#filtering). 
 
-La documentación de MockAPI no es muy clara al respecto. Si quieren pueden ser [estas instrucciones](https://frontendlab.vercel.app/vue/simulando-un-login/#buscar-el-nombre-de-usuario).
+La documentación de MockAPI sobre el uso de _search params_ no es muy clara al respecto. Si les resulta más claro, pueden probar con [estas instrucciones](https://frontendlab.vercel.app/vue/simulando-un-login/#buscar-el-nombre-de-usuario).
 
-__10. Validaciones:__ Tanto el Login como el Signup deben tener validaciones. La validación del Login es que haya un usuario con el nombre (o e-mail) ingresado y que el password coincida con el registrado. Las instrucciones sobre cómo hacer esto las pueden encontrar [acá](https://frontendlab.vercel.app/vue/simulando-un-login/).
+__10. Validaciones:__ Tanto el Login como el Signup deben tener validaciones. La validación del Login es que haya un usuario con el nombre (o e-mail) ingresado y que el password coincida con el registrado. Las instrucciones sobre cómo hacer esto las pueden encontrar [acá](https://frontendlab.vercel.app/vue/simulando-un-login/) (no es obligatorio que lo hagan de esta forma, se los paso únicamente por si les sirve como guía).
 
 En el caso del Signup, las validaciones deben ser: que el nombre no sea ni demasiado corto ni demasiado largo, que el formato de e-mail sea correcto y que el password tenga algún tipo de condición (por ejemplo: al menos una mayúscula, al menos un número o al menos un guión). En el Signup también sería bueno chequear si no hay ya un usuario previamente registrado con ese nombre (o email). Las instrucciones sobre cómo hacer esto las pueden encontrar [acá](https://frontendlab.vercel.app/vue/simulando-un-signup/#simulando-un-signup).
 
-__11.__ Navigation guards:__ Sería bueno incluir alguna forma de bloquear el ingreso forzado a la aplicación. Esto ocurre cuando un usuario __que no está loggeado__ ingresa a la ruta de admin solamente ingresando la URL en la barra de navegación del browser:
+__11. Navigation guards:__ Sería bueno incluir alguna forma de bloquear el ingreso forzado a la aplicación. Esto ocurre cuando un usuario __que no está loggeado__ ingresa a la ruta `/admin` solamente ingresando la URL en la barra de navegación del browser:
 
 http://localhost:5173/admin
 
-Al hacer esto el usuario debería ser redirigido a la ruta de Login ('/login'). 
+Al hacer esto el usuario debería ser redirigido a la ruta de Login ('/login') y no permitirle entrar en forma directa a `/admin`.
 
 Y lo mismo si el usuario hizo Logout y luego vuelve atrás hacia `/admin` con el botón ⬅️ del browser: nuevamente, debería ser redirigido a `/login`.
 
-Esto se puede hacer poniendo un condicional en `created()` dentro de _AdminView.vue_ o haciendo uso de las __navigation guards__ de Vue Router:
+Esto se puede hacer poniendo un condicional en `created()` dentro de _AdminView.vue_ o haciendo uso de las [navigation guards](https://router.vuejs.org/guide/advanced/navigation-guards.html#navigation-guards) de Vue Router:
 
 ```js
 router.beforeEach((to, from, next) => {
