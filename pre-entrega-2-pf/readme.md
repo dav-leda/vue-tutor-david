@@ -13,9 +13,65 @@ Si no pueden solucionar el error no hay problema, pueden entregar igual, pero en
 
 __3. Vue 2 / Vue 3:__ Recuerden que si están usando la __versión 3__ de Vue, __BootstrapVue__, __VueForm__ y __Vue Router 3__ no les van a funcionar, para eso deben crear el proyecto con Vue 2. Si quieren hacer el proyecto con Vue 3 (lo que sería lo más recomendable) deben usar CSS nativo (o [Vuetify](https://vuetifyjs.com/en/)), hacer el formulario de Signup sin librerías (o usando [FormKit](https://formkit.com/)) y usar __Vue Router 4.__
 
-__4. Axios:__ La consigna dice que deben **integrar Axios**. Para eso recuerden que primero deben instalarlo (`npm i axios`). 
+__4. Axios:__ La consigna dice que deben **integrar Axios**. Para eso recuerden que primero deben instalarlo (`npm i axios`).
 
-También pueden usar el método nativo `fetch` de JavaScript en lugar de Axios. Usar `fetch` les va a ahorrar unos 30Kb en el _bundle_ final. Teniendo en cuenta que todo Vue pesa unos 50Kb (o sea, Vue 3 con _tree shaking_ pesa 50Kb, Vue 2 pesa unos 70Kb) sumar 30Kb sólo para ahorrarse un par de líneas de código en la petición HTTP no tiene mucho sentido. Pero bueno, la consigna dice usar Axios, así que si quieren úsenlo 🤷‍♂️️
+El problema con Axios es su peso (29.5Kb). Teniendo en cuenta que todo Vue pesa unos 52Kb, sumar 29Kb sólo para ahorrarse un par de líneas de código en la petición HTTP no tiene mucho sentido.
+
+Una opción mejor es que usen el método nativo `fetch`. 
+
+Y otra opción aún mejor es que usen [dedalo-ax](https://www.npmjs.com/package/dedalo-ax). Funciona igual que Axios pero pesa solamente 778 bytes. Y fue creada por quien les habla 🙋‍♂️️
+
+```sh
+npm i dedalo-ax
+```
+Y en el componente:
+
+```js
+const { VITE_API_URL: baseUrl } = import.meta.env
+const endpoint = baseUrl + '/products'
+
+import ax from 'dedalo-ax'
+
+export default {
+
+  data: () => ({ 
+    products: []
+  }),
+
+  async created() {
+    this.products = await ax.get(endpoint)
+  }
+}
+```
+
+Y para hacer un **POST**:
+
+```js
+import ax from 'dedalo-ax'
+
+const { VITE_API_URL: baseUrl } = import.meta.env
+const endpoint = baseUrl + '/products'
+
+export default {
+
+  data: () => ({
+    newProduct: {
+      name: String,
+      price: Number,
+      stock: Number,
+      image: String
+    }
+  }),
+
+  methods: {
+    async addNewProduct() {
+      const res = await ax.post(endpoint, this.newProduct)
+      console.log(res)
+    }
+  }
+}
+```
+
 
 __5. MockAPI:__ La consigna dice que deben **consumir los recursos desde el backend en MockAPI.** Para crear una cuenta en [MockAPI](https://mockapi.io)  pueden seguir [estas instrucciones](https://frontendlab.vercel.app/vue/simulando-un-login/#mockapi). En MockAPI deben __crear 2 recursos: uno para productos y otro para usuarios.__ 
 
@@ -196,16 +252,34 @@ goToEditProduct(id) {
 Y luego, en el componente __AddOrUpdateProduct.vue__, si el _id_ de la ruta es `new-product` entonces `this.product` puede ser un objeto vacío o un _placeholder_ con datos iniciales. Y si no es `new-product`, hacer un `fetch` a MockAPI para buscar los datos del producto a ser modificado haciendo uso del _id_ de la ruta (que es igual a `product.id`):
 
 ```js
-async created() {
-  if (this.$route.params.id === 'new-product') {
-    this.product = placeholderProduct
-  } else {
-    this.product = await fetchService.getData(
-      `/products/${this.$route.params.id}`
-    )
+const { VITE_API_URL: baseUrl } = import.meta.env;
+
+const placeholderProduct = {
+  name: 'Chocotorta',
+  description: 'Con chocolinas.',
+  price: 1000,
+  stock: 1,
+  imgsrc: 'https://dav-leda.github.io/images-bakery/chocotorta.jpg'
+}
+
+import ax from 'dedalo-ax'
+
+export default {
+
+  async created() {
+
+    const id = this.$route.params.id;
+    const endpoint = `${baseUrl}/products/${id}`;
+
+    if (id === 'new-product') {
+      this.product = placeholderProduct
+    } else {
+      this.product = await ax.get(endpoint)
+    }
   }
 }
 ```
+
 
 __9. Pedidos:__ La consigna dice:
 
