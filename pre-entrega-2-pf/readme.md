@@ -47,6 +47,8 @@ Este es un ejemplo de cómo podría quedar la estructura de archivos del proyect
 │   
 ├── package.json
 │   
+├── .env.example
+│   
 ├── vite.config.js
 │   
 ├── /public
