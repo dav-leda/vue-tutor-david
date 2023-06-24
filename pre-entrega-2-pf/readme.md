@@ -47,97 +47,97 @@ Este es un ejemplo de cómo podría quedar la estructura de archivos del proyect
 │   
 ├── package.json
 │   
-├── public
+├── vite.config.js
+│   
+├── /public
 │   └── favicon.ico
 │   
-├── src
-│   ├── App.vue
-│   │
-│   ├── assets
-│   │   └── css
-│   │       ├── atomic.css
-│   │       ├── main.css
-│   │       └── semantic.css
-│   │
-│   ├── components
-│   │   │
-│   │   ├── admin
-│   │   │   └── AdminTable.vue
-│   │   │
-│   │   ├── cart
-│   │   │   ├── CartButtons.vue
-│   │   │   ├── CartCounter.vue
-│   │   │   ├── CartSideBar.vue
-│   │   │   └── CartTable.vue
-│   │   │
-│   │   ├── form
-│   │   │   ├── EmailInput.vue
-│   │   │   ├── FirstNameInput.vue
-│   │   │   ├── LastNameInput.vue
-│   │   │   ├── PasswordInput.vue
-│   │   │   ├── ToolTip.vue
-│   │   │   └── UsernameInput.vue
-│   │   │
-│   │   ├── icons
-│   │   │   ├── BackIcon.vue
-│   │   │   ├── CartAddIcon.vue
-│   │   │   ├── CartIcon.vue
-│   │   │   ├── CheckIcon.vue
-│   │   │   ├── CloseIcon.vue
-│   │   │   ├── EditIcon.vue
-│   │   │   ├── EmailIcon.vue
-│   │   │   ├── EyeIcon.vue
-│   │   │   ├── HeartIcon.vue
-│   │   │   ├── PasswordIcon.vue
-│   │   │   ├── TrashIcon.vue
-│   │   │   ├── UserIcon.vue
-│   │   │   └── UsernameIcon.vue
-│   │   │
-│   │   ├── user
-│   │   │    ├── OrderDetail.vue
-│   │   │    └── UserAvatar.vue
-│   │   │ 
-│   │   ├── ModalWindow.vue
-│   │   ├── NavBar.vue
-│   │   └── ProductCard.vue
-│   │   
-│   ├── main.js
-│   │   
-│   ├── router
-│   │   └── index.js
-│   │   
-│   ├── services
-│   │   └── fetchService.js
-│   │   
-│   ├── stores
-│   │   ├── cartStore.js
-│   │   ├── formStore.js
-│   │   ├── productsStore.js
-│   │   ├── userStore.js
-│   │   └── validationClass.js
-│   │   
-│   ├── utils
-│   │   └── helperFunctions.js
-│   │   
-│   └── views
-│       │
-│       ├── admin
-│       │   ├── AddOrUpdateProduct.vue
-│       │   ├── AdminView.vue
-│       │   └── TotalOrdersView.vue
-│       │
-│       ├── user
-│       │   ├── ConfirmOrderView.vue
-│       │   ├── LoginView.vue
-│       │   ├── OrdersView.vue
-│       │   ├── SignupMessage.vue
-│       │   └── SignupView.vue
-│       │
-│       ├── HomeView.vue
-│       ├── NotFoundView.vue
-│       └── ProductView.vue
-│   
-└── vite.config.js
+└── /src
+    ├── App.vue
+    │
+    ├── /assets
+    │   └── /css
+    │       ├── atomic.css
+    │       ├── main.css
+    │       └── semantic.css
+    │
+    ├── /components
+    │   │
+    │   ├── /admin
+    │   │   └── AdminTable.vue
+    │   │
+    │   ├── /cart
+    │   │   ├── CartButtons.vue
+    │   │   ├── CartCounter.vue
+    │   │   ├── CartSideBar.vue
+    │   │   └── CartTable.vue
+    │   │
+    │   ├── /form
+    │   │   ├── EmailInput.vue
+    │   │   ├── FirstNameInput.vue
+    │   │   ├── LastNameInput.vue
+    │   │   ├── PasswordInput.vue
+    │   │   ├── ToolTip.vue
+    │   │   └── UsernameInput.vue
+    │   │
+    │   ├── /icons
+    │   │   ├── BackIcon.vue
+    │   │   ├── CartAddIcon.vue
+    │   │   ├── CartIcon.vue
+    │   │   ├── CheckIcon.vue
+    │   │   ├── CloseIcon.vue
+    │   │   ├── EditIcon.vue
+    │   │   ├── EmailIcon.vue
+    │   │   ├── EyeIcon.vue
+    │   │   ├── HeartIcon.vue
+    │   │   ├── PasswordIcon.vue
+    │   │   ├── TrashIcon.vue
+    │   │   ├── UserIcon.vue
+    │   │   └── UsernameIcon.vue
+    │   │
+    │   ├── /user
+    │   │    ├── OrderDetail.vue
+    │   │    └── UserAvatar.vue
+    │   │ 
+    │   ├── ModalWindow.vue
+    │   ├── NavBar.vue
+    │   └── ProductCard.vue
+    │   
+    ├── main.js
+    │   
+    ├── /router
+    │   └── index.js
+    │   
+    ├── /services
+    │   └── fetchService.js
+    │   
+    ├── /stores
+    │   ├── cartStore.js
+    │   ├── formStore.js
+    │   ├── productsStore.js
+    │   ├── userStore.js
+    │   └── validationClass.js
+    │   
+    ├── /utils
+    │   └── helperFunctions.js
+    │   
+    └── /views
+        │
+        ├── /admin
+        │   ├── AddOrUpdateProduct.vue
+        │   ├── AdminView.vue
+        │   └── TotalOrdersView.vue
+        │
+        ├── /user
+        │   ├── ConfirmOrderView.vue
+        │   ├── LoginView.vue
+        │   ├── OrdersView.vue
+        │   ├── SignupMessage.vue
+        │   └── SignupView.vue
+        │
+        ├── HomeView.vue
+        ├── NotFoundView.vue
+        └── ProductView.vue
 ```
 
 __7. ABM de productos__: La consigna dice:
@@ -176,11 +176,17 @@ Y en _AdminView.vue_:
 
 ```js
 goToAddProduct() {
-  this.$router.push('/admin/product/new-product')
+  this.$router.push({ 
+    name: 'add-update-product', 
+    params: { id: 'new-product' } 
+  })
 },
 
-goToEditProduct(product) {
-  this.$router.push(`/admin/product/${product.id}`)
+goToEditProduct(id) {
+  this.$router.push({ 
+    name: 'add-update-product', 
+    params: { id } 
+  })
 },
 ```
 Y luego, en el componente __AddOrUpdateProduct.vue__, si el _id_ de la ruta es `new-product` entonces `this.product` puede ser un objeto vacío o un _placeholder_ con datos iniciales. Y si no es `new-product`, hacer un `fetch` a MockAPI para buscar los datos del producto a ser modificado haciendo uso del _id_ de la ruta (que es igual a `product.id`):
@@ -364,7 +370,7 @@ __11. Bloqueos de navegación:__ Sería bueno incluir alguna forma de bloquear e
 
 http://localhost:5173/admin
 
-Al hacer esto el usuario debería ser redirigido a la ruta de Login ('/login') y no permitirle entrar en forma directa a `/admin`.
+Al hacer esto el usuario debería ser redirigido a la ruta de Login (`/login`) y no permitirle entrar en forma directa a `/admin`.
 
 Y lo mismo si el usuario hizo Logout y luego vuelve atrás hacia `/admin` con el botón ⬅️ del browser: nuevamente, debería ser redirigido a `/login`.
 
