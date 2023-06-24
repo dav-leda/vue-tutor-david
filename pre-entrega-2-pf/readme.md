@@ -236,44 +236,40 @@ La solución es que dentro del recurso de usuarios, en el objeto de cada usuario
     "products": [
      {
       "id": "17",
-      "priority": 17,
       "name": "Torre de chocolate",
       "price": 240,
       "stock": 7,
-      "description": "Producto elaborado con ingredientes 100% orgánicos. Reducido en calorías. Libre de TACC. Apto para celíacos. Apto para veganos. No contiene ingredientes de origen animal.",
+      "description": "Producto elaborado con ingredientes 100% orgánicos.",
       "imgsrc": "https://dav-leda.github.io/images-bakery/torre-chocolate.jpg",
       "qty": 3,
       "subtotal": 720
      },
      {
       "id": "18",
-      "priority": 18,
       "name": "Crumble de manzana",
       "price": 420,
       "stock": 12,
-      "description": "Producto elaborado con ingredientes 100% orgánicos. Reducido en calorías. Libre de TACC. Apto para celíacos. Apto para veganos. No contiene ingredientes de origen animal.",
+      "description": "Producto elaborado con ingredientes 100% orgánicos.",
       "imgsrc": "https://dav-leda.github.io/images-bakery/apple-pie.jpg",
       "qty": 7,
       "subtotal": 2940
      },
      {
       "id": "13",
-      "priority": 13,
       "name": "Lemon Pie",
       "price": 870,
       "stock": 9,
-      "description": "Producto elaborado con ingredientes 100% orgánicos. Reducido en calorías. Libre de TACC. Apto para celíacos. Apto para veganos. No contiene ingredientes de origen animal.",
+      "description": "Producto elaborado con ingredientes 100% orgánicos.",
       "imgsrc": "https://dav-leda.github.io/images-bakery/lemon-pie-2.jpg",
       "qty": 5,
       "subtotal": 4350
      },
      {
       "id": "16",
-      "priority": 16,
       "name": "Donuts de chocolate",
       "price": 180,
       "stock": 12,
-      "description": "Producto elaborado con ingredientes 100% orgánicos. Reducido en calorías. Libre de TACC. Apto para celíacos. Apto para veganos. No contiene ingredientes de origen animal.",
+      "description": "Producto elaborado con ingredientes 100% orgánicos.",
       "imgsrc": "https://dav-leda.github.io/images-bakery/donuts-choco.jpg",
       "qty": 6,
       "subtotal": 1080
@@ -286,33 +282,30 @@ La solución es que dentro del recurso de usuarios, en el objeto de cada usuario
       "products": [
         {
           "id": "4",
-          "priority": 4,
           "name": "Muffin de manzana",
           "price": 350,
           "stock": 12,
-          "description": "Producto elaborado con ingredientes 100% orgánicos. Reducido en calorías. Libre de TACC. Apto para celíacos. Apto para veganos. No contiene ingredientes de origen animal.",
+          "description": "Producto elaborado con ingredientes 100% orgánicos.",
           "imgsrc": "https://dav-leda.github.io/images-bakery/muffin-manzana.jpg",
           "qty": 2,
           "subtotal": 700
         },
         {
           "id": "2",
-          "priority": 2,
           "name": "Cheese Cake",
           "price": 280,
           "stock": 15,
-          "description": "Producto elaborado con ingredientes 100% orgánicos. Reducido en calorías. Libre de TACC. Apto para celíacos. Apto para veganos. No contiene ingredientes de origen animal.",
+          "description": "Producto elaborado con ingredientes 100% orgánicos.",
           "imgsrc": "https://dav-leda.github.io/images-bakery/cheese-cake-frutos-rojos.jpg",
           "qty": 1,
           "subtotal": 280
         },
         {
           "id": "13",
-          "priority": 13,
           "name": "Lemon Pie",
           "price": 870,
           "stock": 9,
-          "description": "Producto elaborado con ingredientes 100% orgánicos. Reducido en calorías. Libre de TACC. Apto para celíacos. Apto para veganos. No contiene ingredientes de origen animal.",
+          "description": "Producto elaborado con ingredientes 100% orgánicos.",
           "imgsrc": "https://dav-leda.github.io/images-bakery/lemon-pie-2.jpg",
           "qty": 1,
           "subtotal": 870
