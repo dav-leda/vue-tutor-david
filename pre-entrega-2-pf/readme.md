@@ -11,11 +11,13 @@ __2. Errores en consola:__ Antes de hacer la entrega __por favor chequeen si no 
 
 Si no pueden solucionar el error no hay problema, pueden entregar igual, pero en ese caso avisen al hacer la entrega: "Me está dando tal error por consola."
 
-__3. Axios:__ La consigna dice que deben **integrar Axios**. Para eso recuerden que primero deben instalarlo (`npm i axios`). 
+__3. Vue 2 / Vue 3:__ Recuerden que si están usando la __versión 3__ de Vue, __BootstrapVue__, __VueForm__ y __Vue Router 3__ no les van a funcionar, para eso deben crear el proyecto con Vue 2. Si quieren hacer el proyecto con Vue 3 (lo que sería lo más recomendable) deben usar CSS nativo (o [Vuetify](https://vuetifyjs.com/en/)), hacer el formulario de Signup sin librerías (o usando [FormKit](https://formkit.com/)) y usar __Vue Router 4.__
+
+__4. Axios:__ La consigna dice que deben **integrar Axios**. Para eso recuerden que primero deben instalarlo (`npm i axios`). 
 
 También pueden usar el método nativo `fetch` de JavaScript en lugar de Axios. Usar `fetch` les va a ahorrar unos 30Kb en el _bundle_ final. Teniendo en cuenta que todo Vue pesa unos 50Kb (o sea, Vue 3 con _tree shaking_ pesa 50Kb, Vue 2 pesa unos 70Kb) sumar 30Kb sólo para ahorrarse un par de líneas de código en la petición HTTP no tiene mucho sentido. Pero bueno, la consigna dice usar Axios, así que si quieren úsenlo 🤷‍♂️️
 
-__4. MockAPI:__ La consigna dice que deben **consumir los recursos desde el backend en MockAPI.** Para crear una cuenta en [MockAPI](https://mockapi.io)  pueden seguir [estas instrucciones](https://frontendlab.vercel.app/vue/simulando-un-login/#mockapi). En MockAPI deben __crear 2 recursos: uno para productos y otro para usuarios.__ 
+__5. MockAPI:__ La consigna dice que deben **consumir los recursos desde el backend en MockAPI.** Para crear una cuenta en [MockAPI](https://mockapi.io)  pueden seguir [estas instrucciones](https://frontendlab.vercel.app/vue/simulando-un-login/#mockapi). En MockAPI deben __crear 2 recursos: uno para productos y otro para usuarios.__ 
 
 Es decir que el JSON con el listado de productos y el del listado de usuarios deben estar en MockAPI, __no *hardcodeados* dentro de los componentes en *data*__:
 
@@ -23,7 +25,7 @@ Es decir que el JSON con el listado de productos y el del listado de usuarios de
 
 Hasta el año pasado el plan gratuito de MockAPI permitía generar hasta 3 _resources_ e incluso vincularlos, como se ve en la imagen (por ejemplo vincular el recurso de usuarios con el de pedidos para que automáticamente cada pedido quede asociado a un usuario en particular). Pero desde hace unos meses limitaron su plan gratuito a 2 _resources_ 😐️ con lo cual, para poder asociar cada pedido a un usuario hay que crear un array de pedidos dentro de cada objeto de usuario 😒️
 
-__5. Variables de entorno:__ En cuanto a la URL de MockAPI, recuerden que MockAPI genera una URL única que contiene el token de su cuenta personal:
+__6. Variables de entorno:__ En cuanto a la URL de MockAPI, recuerden que MockAPI genera una URL única que contiene el token de su cuenta personal:
 
 https://numero-de-token.mockapi.io/api/
 
@@ -31,7 +33,7 @@ Sería bueno que guarden esta URL en una [variable de entorno](https://frontendl
 
 Para usar variables de entorno pueden seguir las instrucciones que están [acá](https://frontendlab.vercel.app/vue/simulando-un-login/#variables-de-entorno).
 
-__6. Estructura general del proyecto:__ Como dice la consigna, el proyecto debe incluir __Login__ y __Signup__ (registro de usuarios), __listado de productos__, __carrito de compras, listado de pedidos y ABM de productos__. 
+__7. Estructura general del proyecto:__ Como dice la consigna, el proyecto debe incluir __Login__ y __Signup__ (registro de usuarios), __listado de productos__, __carrito de compras, listado de pedidos y ABM de productos__. 
 
 Sería bueno que agrupen los componentes en distintas carpetas, según su función: los del carrito en una carpeta, los del usuario en otra, los del admin en otra. Y si usan íconos SVG, crear un componente para cada uno y ponerlos en una carpeta llamada _icons_.
 
@@ -142,7 +144,7 @@ Este es un ejemplo de cómo podría quedar la estructura de archivos del proyect
         └── ProductView.vue
 ```
 
-__7. ABM de productos__: La consigna dice:
+__8. ABM de productos__: La consigna dice:
 
 __*Crear un recurso en el backend para listar productos o servicios, incorporando los métodos (GET, POST, PUT, DELETE).*__
 
@@ -205,7 +207,7 @@ async created() {
 }
 ```
 
-__8. Pedidos:__ La consigna dice:
+__9. Pedidos:__ La consigna dice:
 
 __*Crear un último recurso que será el carrito, integrando GET y POST para realizar y revisar pedidos.*__
 
@@ -343,7 +345,7 @@ Otra opción es guardar en el backend la fecha en bruto (`new Date()`) y luego f
 
 Como habrán visto, el password está _hasheado_. El password real es __test123__, lo que se guardó en MockAPI es un _hash_ de ese password. En general es considerado una buena práctica guardar los passwords en el backend en forma de _hash_ __para que ni siquiera el admin pueda saber cuáles son los passwords ingresados por los usuarios__ (ya que el _hashing_, a diferencia de la encriptación, es irreversible). No es necesario que lo hagan de esta forma, pero si quieren hacerlo pueden encontrar las instrucciones [acá](https://frontendlab.vercel.app/vue/simulando-un-login/#encriptacion-del-password).
 
-__9. Login y Signup:__ La consigna dice:
+__10. Login y Signup:__ La consigna dice:
 
 __*Crear un Login y Registro de usuarios utilizando los métodos GET y POST.*__
 
@@ -357,11 +359,11 @@ La única información que debería llegarle al frontend son los datos del usuar
 
 La documentación de MockAPI sobre el uso de _search params_ no es muy clara al respecto. Si les resulta más claro, pueden probar con [estas instrucciones](https://frontendlab.vercel.app/vue/simulando-un-login/#buscar-el-nombre-de-usuario).
 
-__10. Validaciones:__ Tanto el Login como el Signup deben tener validaciones. La validación del Login es que haya un usuario con el nombre (o e-mail) ingresado y que el password coincida con el registrado. Las instrucciones sobre cómo hacer esto las pueden encontrar [acá](https://frontendlab.vercel.app/vue/simulando-un-login/) (no es obligatorio que lo hagan de esta forma, se los paso únicamente por si les sirve como guía).
+__11. Validaciones:__ Tanto el Login como el Signup deben tener validaciones. La validación del Login es que haya un usuario con el nombre (o e-mail) ingresado y que el password coincida con el registrado. Las instrucciones sobre cómo hacer esto las pueden encontrar [acá](https://frontendlab.vercel.app/vue/simulando-un-login/) (no es obligatorio que lo hagan de esta forma, se los paso únicamente por si les sirve como guía).
 
 En el caso del Signup, las validaciones deben ser: que el nombre no sea ni demasiado corto ni demasiado largo, que el formato de e-mail sea correcto y que el password tenga algún tipo de condición (por ejemplo: al menos una mayúscula, al menos un número o al menos un guión). En el Signup también sería bueno chequear si no hay ya un usuario previamente registrado con ese nombre (o email). Las instrucciones sobre cómo hacer esto las pueden encontrar [acá](https://frontendlab.vercel.app/vue/simulando-un-signup/#simulando-un-signup).
 
-__11. Bloqueos de navegación:__ Sería bueno incluir alguna forma de bloquear el ingreso forzado a la aplicación. Esto ocurre cuando un usuario __que no está loggeado__ ingresa a la ruta `/admin` solamente ingresando la URL en la barra de navegación del browser:
+__12. Bloqueos de navegación:__ Sería bueno incluir alguna forma de bloquear el ingreso forzado a la aplicación. Esto ocurre cuando un usuario __que no está loggeado__ ingresa a la ruta `/admin` solamente ingresando la URL en la barra de navegación del browser:
 
 http://localhost:5173/admin
 
