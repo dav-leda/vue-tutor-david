@@ -11,9 +11,11 @@ __2. Errores en consola:__ Antes de hacer la entrega __por favor chequeen si no 
 
 Si no pueden solucionar el error no hay problema, pueden entregar igual, pero en ese caso avisen al hacer la entrega: "Me está dando tal error por consola."
 
-__3. Vue 2 / Vue 3:__ Recuerden que si están usando la __versión 3__ de Vue, __BootstrapVue__, __VueForm__ y __Vue Router 3__ no les van a funcionar, para eso deben crear el proyecto con Vue 2. Si quieren hacer el proyecto con Vue 3 (lo que sería lo más recomendable) deben usar CSS nativo (o [Vuetify](https://vuetifyjs.com/en/)), hacer el formulario de Signup sin librerías (o usando [FormKit](https://formkit.com/)) y usar __Vue Router 4.__
+__3. Vue 2 / Vue 3:__ Recuerden que si están usando la __versión 3__ de Vue __BootstrapVue__, __VueForm__ y __Vue Router 3__ no les van a funcionar, ya que sólo funcionan con Vue 2. Si quieren hacer el proyecto con Vue 3 (lo que sería lo más recomendable, ya que Vue 2 será _deprecado_ a fines de este año) pueden usar Tailwind, o [Element Plus](https://element-plus.org/es-ES/), o [Vuestic](https://ui.vuestic.dev/), o [PrimeVue](https://primevue.org/installation), o [Vuetify](https://vuetifyjs.com/en/). Y para el formulario de Signup pueden usar [FormKit](https://formkit.com/) o [Vuelidate](https://vuelidate-next.netlify.app/). Y usar __Vue Router 4__ en lugar de Vue Router 3.
 
-__4. Vue Router:__ A pesar de que el sentido común nos haría pensar que __Vue Router 3__ es el router para __Vue 3__, no es así 😒️ El router para __Vue 3__ es [Vue Router 4](https://router.vuejs.org/guide/migration/), mientras que el router para __Vue 2__ es [Vue Router 3](https://v3.router.vuejs.org/guide/)... Cosas raras que tiene Vue 🤷‍♂️️ 
+Si de todas formas quieren usar BootstrapVue traten de hacerlo con [tree shaking](https://bootstrap-vue.org/docs/#tree-shaking-with-module-bundlers), de lo contrario se van a instalar los 80 componentes que __pesan más de 1MB__ 😬️ 
+
+__4. Vue Router:__ Aunque lo más lógico sería que __Vue Router 3__ sea la versión del router para __Vue 3__, no es así 😒️ El router para __Vue 3__ es [Vue Router 4](https://router.vuejs.org/guide/migration/), mientras que el router para __Vue 2__ es [Vue Router 3](https://v3.router.vuejs.org/guide/)... Cosas raras que tiene Vue 🤷‍♂️️ 
 
 Las versiones 3 y 4 de Vue Router son bastante parecidas, pero tengan en cuenta que al usar __Vue Router 4__ (con Vue 3) el archivo `main.js` debería quedarles así:
 
@@ -33,6 +35,8 @@ createApp(App)
 Y el archivo `index.js` dentro del directorio `/router` debería ser algo así:
 
 ```js
+// src/router/index.js
+
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 
@@ -67,7 +71,7 @@ Y en __App.vue__ incluyen __RouterView__ que es donde se van a renderizar las di
 
 <script>
 // No es necesario declararlos dentro del objeto components
-// con importarlos es suficiente: 
+// Con importarlos es suficiente: 
 import { RouterLink, RouterView } from 'vue-router'
 </script>
 ```
