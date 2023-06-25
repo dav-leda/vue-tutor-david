@@ -52,20 +52,18 @@ import ax from 'dedalo-ax'
 const { VITE_API_URL: baseUrl } = import.meta.env
 const endpoint = baseUrl + '/products'
 
+const someProduct = {
+  name: 'Chocotorta',
+  description: 'Con chocolinas.',
+  price: 1000,
+  stock: 1,
+  imgsrc: 'https://dav-leda.github.io/images-bakery/chocotorta.jpg'
+}
+
 export default {
-
-  data: () => ({
-    newProduct: {
-      name: ''
-      price: 0,
-      stock: 0,
-      image: ''
-    }
-  }),
-
   methods: {
     async addNewProduct() {
-      const res = await ax.post(endpoint, this.newProduct)
+      const res = await ax.post(endpoint, someProduct)
       console.log(res)
     }
   }
