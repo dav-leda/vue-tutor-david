@@ -258,7 +258,7 @@ También pueden probar entrando como _admin_ en este otro ejemplo (usuario: __ad
 
 <a href="https://vue-bakery-2.vercel.app/" target="_blank">https://vue-bakery-2.vercel.app/</a>
 
-Luego de hacer Login como admin van a ver que en el dropdown del usuario aparecen las opciones: Mi Perfil, Pedidos, __Productos__ y Logout. Si entran a __Productos__ van a ver el __CMS de productos__ con la opción de agregar nuevos productos, editar algún dato del producto, o borrar el producto. Todos estos cambios tiene que verse reflejados en el backend de MockAPI.
+Luego de hacer Login como admin van a ver que en el dropdown del usuario aparecen las opciones: Mi Perfil, Pedidos, __Productos__ y Logout. Si entran a __Productos__ van a ver el __CMS de productos__ con la opción de agregar nuevos productos, editar algún dato del producto, o borrar el producto.
 
 *Si quieren probar la opción de borrar productos por favor haganlo con alguno que hayan creado ustedes, por favor no borren los productos listados, así no tengo que volver a cargarlos.* 🙏️ 🙏️ 🙏️ 
 
