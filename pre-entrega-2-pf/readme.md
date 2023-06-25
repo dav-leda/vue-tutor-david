@@ -56,10 +56,10 @@ export default {
 
   data: () => ({
     newProduct: {
-      name: String,
-      price: Number,
-      stock: Number,
-      image: String
+      name: ''
+      price: 0,
+      stock: 0,
+      image: ''
     }
   }),
 
