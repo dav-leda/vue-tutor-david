@@ -204,6 +204,20 @@ Es decir que el JSON con el listado de productos y el del listado de usuarios de
 
 Hasta el año pasado el plan gratuito de MockAPI permitía generar hasta 3 _resources_ e incluso vincularlos, como se ve en la imagen (por ejemplo vincular el recurso de usuarios con el de pedidos para que automáticamente cada pedido quede asociado a un usuario en particular). Pero desde hace unos meses limitaron su plan gratuito a 2 _resources_ 😐️ con lo cual, para poder asociar cada pedido a un usuario hay que crear un array de pedidos dentro de cada objeto de usuario 😒️
 
+Tengan en cuenta que MockAPI genera un nuevo _id_ automáticamente cada vez que agregamos un nuevo documento al recurso. Aunque el _id_ que genera MockAPI es un número, __lo guarda como un String, no como un Number__. Por lo cual, si en la primera pre-entrega __tenían la propiedad *id* con tipo Number, deben cambiarla a String:__
+
+```js
+props: {
+  product: {
+    id: String,
+    name: String,
+    price: Number,
+    stock: Number,
+    imgsrc: String
+  }
+}
+```
+
 __8. Variables de entorno:__ En cuanto a la URL de MockAPI, recuerden que MockAPI genera una URL única que contiene el token de su cuenta personal:
 
 https://numero-de-token.mockapi.io/api/
