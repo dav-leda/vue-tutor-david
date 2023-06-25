@@ -430,9 +430,9 @@ Sería bueno que para chequear si existe un usuario con el nombre (o email) y pa
 
 ```js
 const endpoint = baseUrl + '/users'
-const users = await ax.get(endpoint)
 
-// Traten de NO hace esto:
+// Traten de NO hacer esto:
+const users = await ax.get(endpoint)
 const user = users.find(user => user.username === this.form.username) 
 ```
 
