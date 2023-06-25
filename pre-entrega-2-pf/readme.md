@@ -52,7 +52,7 @@ const router = createRouter({
   ]
 })
 ```
-Y luego, `routes` le van agregando las rutas que quieran, siempre recordando que antes deben importar la `view` que van a usar arriba de todo (las `views` son lo mismo que en un componente de Vue, pero se usan como _vistas_ de Vue Router).
+Y luego en el array `routes` le van agregando las rutas que quieran, siempre recordando que antes deben importar la `view` que van a usar arriba de todo (las `views` son lo mismo que en un componente de Vue, pero se usan como _vistas_ de Vue Router).
 
 Y en __App.vue__ incluyen __RouterView__ que es donde se van a renderizar las distintas vistas:
 
