@@ -250,7 +250,7 @@ __*Tendrás que crear un usuario Admin (ABM de productos e Información general)
 
 Esta parte de la consigna es bastante confusa, pero si ven el ejemplo de proyecto final que está en la página 15 de la clase 1, a lo que se están refiriendo con esto es a un [CMS](https://es.wikipedia.org/wiki/Sistema_de_gesti%C3%B3n_de_contenidos) en forma de [CRUD](https://es.wikipedia.org/wiki/CRUD).
 
-__ABM__ quiere decir __Alta, Baja, Modificación__, que es otra forma de decir __CRUD__. La idea es que el usuario _admin_ pueda crear, modificar o borrar el listado de productos, y estos cambios deben guardarse en el backend de MockAPI usando POST, PUT y DELETE.
+__ABM__ quiere decir __Alta, Baja, Modificación__, que es otra forma de decir __CRUD__. La idea es que el usuario _admin_ pueda crear, modificar o borrar productos y estos cambios deben guardarse en el backend de MockAPI usando POST, PUT y DELETE.
 
 Para probar el ejemplo de Coder House que está en la página 15 de la clase 1 el usuario es __admin@admin__ y el password __123__
 
