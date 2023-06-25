@@ -426,7 +426,17 @@ __*Crear un Login y Registro de usuarios utilizando los métodos GET y POST.*__
 
 Es decir, el Login y Signup deben usar los métodos [GET](https://frontendlab.vercel.app/vue/simulando-un-login/#fetch-service) (para chequear en MockAPI si existe un usuario con el nombre y password ingresados) y [POST](https://frontendlab.vercel.app/vue/simulando-un-signup/#usando-un-fetch-de-tipo-post) (para guardar los datos del usuario en MockAPI en el caso del Signup).
 
-Sería bueno que para chequear si existe un usuario con el nombre (o email) y passwords ingresados por el usuario __no hagan este chequeo en el frontend con *find()*__. Esto es porque traer al frontend __todos los datos de todos los usuarios incluyendo sus passwords__ es considerado una mala práctica, porque de esta forma cualquier usuario que sepa usar las Dev Tools del browser __podría tener acceso a todos los passwords de todos los usuarios 🤦
+Sería bueno que para chequear si existe un usuario con el nombre (o email) y passwords ingresados por el usuario __no hagan este chequeo en el frontend con *find()*__ ⚠️
+
+```js
+const endpoint = baseUrl + '/users'
+const users = await ax.get(endpoint)
+
+// Traten de NO hace esto:
+const user = users.find(user => user.username === this.form.username) 
+```
+
+Esto es porque traer al frontend __todos los datos de todos los usuarios incluyendo sus passwords__ es considerado una mala práctica, porque de esta forma cualquier usuario que sepa usar las Dev Tools del browser __podría tener acceso a todos los passwords de todos los usuarios__ 🤦
 
 La única información que debería llegarle al frontend son los datos del usuario que está intentando hacer Login, __no de todos los usuarios__. Para poder pedirle a MockAPI únicamente este dato deben usar [search params](https://github.com/mockapi-io/docs/wiki/Code-examples#filtering). La documentación de MockAPI sobre el uso de _search params_ no es muy clara al respecto. Si les resulta más claro, pueden probar con [estas instrucciones](https://frontendlab.vercel.app/vue/simulando-un-login/#buscar-el-nombre-de-usuario). Aunque lo que estamos haciendo no sea un e-commerce real sería bueno que lo hagan de esta forma como buena práctica. 
 
