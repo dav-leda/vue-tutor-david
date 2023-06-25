@@ -249,7 +249,7 @@ goToEditProduct(id) {
   })
 },
 ```
-Y luego, en el componente __AddOrUpdateProduct.vue__, si el _id_ de la ruta es `new-product` entonces `this.product` puede ser un objeto vacío o un _placeholder_ con datos iniciales. Y si no es `new-product`, hacer un `fetch` a MockAPI para buscar los datos del producto a ser modificado haciendo uso del _id_ de la ruta (que es igual a `product.id`):
+Y luego, en el componente __AddOrUpdateProduct.vue__, si el _id_ de la ruta es `new-product` entonces `this.product` puede ser un objeto vacío o un _placeholder_ con datos iniciales. Y si no es `new-product`, hacer un `fetch` a MockAPI para buscar los datos del producto a ser modificado haciendo uso del _id_ de la ruta:
 
 ```js
 const { VITE_API_URL: baseUrl } = import.meta.env;
@@ -266,6 +266,10 @@ import ax from 'dedalo-ax'
 
 export default {
 
+  data: () => ({
+    this.product: null
+  }),
+
   async created() {
 
     const id = this.$route.params.id;
@@ -279,7 +283,6 @@ export default {
   }
 }
 ```
-
 
 __9. Pedidos:__ La consigna dice:
 
@@ -308,37 +311,17 @@ La solución es que dentro del recurso de usuarios, en el objeto de cada usuario
   "orders": [
    {
     "timestamp": "jueves, 22 de junio de 2023, 13:37hs.",
-    "total": 9090,
+    "total": 2940,
     "products": [
      {
-      "id": "17",
-      "name": "Torre de chocolate",
-      "price": 240,
-      "stock": 7,
-      "description": "Producto elaborado con ingredientes 100% orgánicos.",
-      "imgsrc": "https://dav-leda.github.io/images-bakery/torre-chocolate.jpg",
-      "qty": 3,
-      "subtotal": 720
-     },
-     {
       "id": "18",
-      "name": "Crumble de manzana",
-      "price": 420,
+      "name": "Lemon Pie",
+      "price": 1200,
       "stock": 12,
       "description": "Producto elaborado con ingredientes 100% orgánicos.",
       "imgsrc": "https://dav-leda.github.io/images-bakery/apple-pie.jpg",
-      "qty": 7,
-      "subtotal": 2940
-     },
-     {
-      "id": "13",
-      "name": "Lemon Pie",
-      "price": 870,
-      "stock": 9,
-      "description": "Producto elaborado con ingredientes 100% orgánicos.",
-      "imgsrc": "https://dav-leda.github.io/images-bakery/lemon-pie-2.jpg",
-      "qty": 5,
-      "subtotal": 4350
+      "qty": 2,
+      "subtotal": 2400
      },
      {
       "id": "16",
@@ -347,14 +330,14 @@ La solución es que dentro del recurso de usuarios, en el objeto de cada usuario
       "stock": 12,
       "description": "Producto elaborado con ingredientes 100% orgánicos.",
       "imgsrc": "https://dav-leda.github.io/images-bakery/donuts-choco.jpg",
-      "qty": 6,
-      "subtotal": 1080
+      "qty": 3,
+      "subtotal": 540
      }
     ]
    },
    {
       "timestamp": "martes, 20 de junio de 2023, 13:25hs.",
-      "total": 1850,
+      "total": 700,
       "products": [
         {
           "id": "4",
@@ -365,26 +348,6 @@ La solución es que dentro del recurso de usuarios, en el objeto de cada usuario
           "imgsrc": "https://dav-leda.github.io/images-bakery/muffin-manzana.jpg",
           "qty": 2,
           "subtotal": 700
-        },
-        {
-          "id": "2",
-          "name": "Cheese Cake",
-          "price": 280,
-          "stock": 15,
-          "description": "Producto elaborado con ingredientes 100% orgánicos.",
-          "imgsrc": "https://dav-leda.github.io/images-bakery/cheese-cake-frutos-rojos.jpg",
-          "qty": 1,
-          "subtotal": 280
-        },
-        {
-          "id": "13",
-          "name": "Lemon Pie",
-          "price": 870,
-          "stock": 9,
-          "description": "Producto elaborado con ingredientes 100% orgánicos.",
-          "imgsrc": "https://dav-leda.github.io/images-bakery/lemon-pie-2.jpg",
-          "qty": 1,
-          "subtotal": 870
         }
       ]
     }
@@ -471,7 +434,6 @@ router.beforeEach((to, from, next) => {
 })
 
 ```
-
 
 <hr>
 
