@@ -148,10 +148,10 @@ El problema con Axios es su peso (29.5Kb). Teniendo en cuenta que todo Vue pesa 
 
 Una opción mejor es que usen el método nativo `fetch`. 
 
-Y otra opción aún mejor es que usen la librería [dedalo-ax](https://www.npmjs.com/package/dedalo-ax) 🙂️ Funciona igual que Axios (en su funcionalidad básica, o sea, para hacer peticiones __get, post, put y delete__) pero __pesa solamente 778 bytes__ y fue creada por quien les habla 🙋‍♂️️ ☺️
+Y otra opción aún mejor es que usen la librería [dedalo-ax](https://www.npmjs.com/package/dedalo-ax) 🙂️ Funciona igual que Axios (en su funcionalidad básica, o sea, para hacer peticiones __get, post, put y delete__) pero __pesa solamente 778 bytes__ y fue creada por quien les habla 🙋‍♂️️
 
 ```sh
-npm i dedalo-ax
+npm install dedalo-ax
 ```
 Y en el componente:
 
@@ -260,7 +260,7 @@ También pueden probar entrando como _admin_ en este otro ejemplo (usuario: __ad
 
 Luego de hacer Login como admin van a ver que en el dropdown del usuario aparecen las opciones: Mi Perfil, Pedidos, __Productos__ y Logout. Si entran a __Productos__ van a ver el __CMS de productos__ con la opción de agregar nuevos productos, editar algún dato del producto, o borrar el producto. Todos estos cambios tiene que verse reflejados en el backend de MockAPI.
 
-*Si quieren probar la opción de borrar productos por favor haganlo con alguno que hayan creado ustedes, por favor no borren los productos listados, así no tengo que volver a cargarlo.* 🙏️ 🙏️ 🙏️ 
+*Si quieren probar la opción de borrar productos por favor haganlo con alguno que hayan creado ustedes, por favor no borren los productos listados, así no tengo que volver a cargarlos.* 🙏️ 🙏️ 🙏️ 
 
 Para la vista de agregar un nuevo producto y de actualizar un producto sería bueno que __reutilicen el mismo componente__ cambiando únicamente el _id_ de la ruta:
 
