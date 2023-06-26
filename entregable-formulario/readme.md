@@ -158,20 +158,25 @@ La documentación de VueForm no es muy clara que digamos. Les paso esta guía de
 `formState.$error`: objeto con los errores que contiene el campo
 <br>
 <br>
-Y luego, al usarlas como condicionales de los mensajes de validación:
+
+Estas propiedades se pueden usar como condicionales de los mensajes de validación.
+
+Lo más usual es usar `$submitted`, para mostrar el mensaje de error cuando el usuario está intentando enviar un formulario incompleto o con errores, y `$touched`, para mostrar el mensaje de error cuando el usuario ingresó algo incorrecto y luego pasó al campo siguiente, o simplemente no ingresó nada (solamente lo "tocó") y pasó al campo siguiente.
 
 ```html
 <!-- Mostrar el mensaje de error si el formulario fue enviado ($submitted)
-y el usuario ingresó algo ($dirty) pero lo que ingresó es incorrecto -->
+o si el usuario focalizó el campo ($touched) pero no ingresó nada
+o lo que ingresó es incorrecto -->
 
-<div
-  v-if="formState.$submitted && formState.$dirty" 
-  slot="minlength" 
-  class="alert alert-danger"
->Este campo requiere como mínimo 2 caracteres.</div>
+<field-messages name="name" show="$touched || $submitted">
+  <div slot="required" class="error">Este campo es obligatorio.</div>
+  <div slot="minlength" class="error">
+    El nombre debe tener al menos 3 caracteres.
+  </div>
+</field-messages>
 ```
 
-Tal como indica la documentación de __VueForm__, si el campo contiene distintos mensajes de error (_scoped messages_) debe usarse `v-if`, no `show`:
+O si quieren usar condicionales distintos para cada campo, pueden hacerlo usando _scoped messages_, como indica la la documentación de __VueForm__, usando `v-if` en lugar de `show`:
 
 <a href="https://www.npmjs.com/package/vue-form#displaying-messages" target="_blank">https://www.npmjs.com/package/vue-form#displaying-messages</a>
 
