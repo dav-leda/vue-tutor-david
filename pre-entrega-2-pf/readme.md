@@ -438,7 +438,58 @@ const user = users.find(user => user.username === this.form.username)
 
 Esto es porque traer al frontend __todos los datos de todos los usuarios incluyendo sus passwords__ es considerado una mala práctica, porque de esta forma cualquier usuario que sepa usar las Dev Tools del browser __podría tener acceso a todos los passwords de todos los usuarios__ 🤦
 
-La única información que debería llegarle al frontend son los datos del usuario que está intentando hacer Login, __no de todos los usuarios__. Para poder pedirle a MockAPI únicamente este dato deben usar [search params](https://github.com/mockapi-io/docs/wiki/Code-examples#filtering). La documentación de MockAPI sobre el uso de _search params_ no es muy clara al respecto. Si les resulta más claro, pueden probar con [estas instrucciones](https://frontendlab.vercel.app/vue/simulando-un-login/#buscar-el-nombre-de-usuario). Aunque lo que estamos haciendo no sea un e-commerce real sería bueno que lo hagan de esta forma como buena práctica. 
+La única información que debería llegarle al frontend son los datos del usuario que está intentando hacer Login, __no de todos los usuarios__. Para poder pedirle a MockAPI únicamente este dato deben usar [search params](https://github.com/mockapi-io/docs/wiki/Code-examples#filtering). 
+
+También se puede hacer esto mismo usando la sintaxis para [query strings](https://www.semrush.com/blog/url-parameters/), con un `?` luego del enpoint, luego el nombre de la propiedad a buscar (en este caso es |`username`), luego un `=` y luego el dato que se quiere buscar (en este caso, lo que ingresó el usuario en el formulario de Login, o sea, `this.form.username`):
+
+```js
+const endpoint = baseUrl + '/users?username=' + this.form.username
+```
+
+MockAPI siempre retorna un array, y si no encuentra nada, retorna un array vacío. Por eso la respuesta al _query_ es el pimer elemento del array (`res[0]`). 
+
+Entonces, el _method_ para el Login podría quedar así:
+
+```js
+async loginUser() {
+
+  const baseUrl = 'https://123456789.mockapi.io/api'
+   
+  // Usando template literals en lugar de +
+  const endpoint = `${baseUrl}/users?username=${this.form.username}`;
+
+  const res = await ax.get(endpoint)
+
+  // MockAPI siempre retorna un array
+  // La respuesta al query es el pimer elemento del array
+  // Si no encuentra nada, retorna un array vacío
+  const user = res[0]
+  
+  if (!user) {
+    this.errorMessage = 'Usuario no registrado.'
+
+  // El chequeo del password no debería hacerse en el frontend, pero bueh... 🤷‍♂️️
+  } else if (user.password !== this.form.password) {
+    this.errorMessage = 'Contraseña incorrecta.'
+  
+  } else {
+    // Por ahora guardar el usuario en data
+    // luego debe ser guardado en Vuex o Pinia
+    this.user = user
+    
+    this.form.resetForm()
+    
+    // Si van a guardar el usuario en localStorage
+    // para persistir la sesión sería bueno
+    // borrar el email y el password antes, por seguridad
+    delete user.email
+    delete user.password
+    saveInStorage('user', user)
+  }
+}
+```
+
+Aunque lo que estamos haciendo no sea un e-commerce real sería bueno que lo hagan de esta forma como buena práctica. 
 
 Y recuerden que la vista de Login debe mostrarse al cliquear en el botón (o ícono) de Login, __no en la vista inicial__. Esto es porque en un e-commerce (a diferencia de una red social o el sitio de un banco) __lo primero que el usuario debe ver son los productos, sin tener que loggearse para poder verlos__. El Login se hace recién cuando el usuario finaliza la compra (o antes, si el usuario quiere).
 
