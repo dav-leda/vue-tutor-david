@@ -630,62 +630,64 @@ __15.__ Este es un ejemplo de cómo podría quedar la estructura de archivos del
 __16.__ Y acá pueden ver un ejemplo de cómo quedaría el JSON de usuarios en MockAPI sumándole el array de pedidos (orders):
 
 ```json
-{
-  "id": "4",
-  "firstname": "Linus",
-  "lastname": "Octocat",
-  "username": "user1",
-  "password": "$2a$08$xUuXJym2o2OZUU3l3g/mEeasbeditdtN6Cp7LBVujS.H.9WJkeJaS",
-  "email": "linus@octocat.com",
-  "avatar": "https://dav-leda.github.io/api/images/avatar-mac.png",
-  "isAdmin": false,
-  "orders": [
-   {
-    "timestamp": "jueves, 22 de junio de 2023, 13:37hs.",
-    "total": 2940,
-    "products": [
-     {
-      "id": "18",
-      "name": "Lemon Pie",
-      "price": 1200,
-      "stock": 12,
-      "description": "Producto elaborado con ingredientes 100% orgánicos.",
-      "imgsrc": "https://dav-leda.github.io/images-bakery/apple-pie.jpg",
-      "qty": 2,
-      "subtotal": 2400
-     },
-     {
-      "id": "16",
-      "name": "Donuts de chocolate",
-      "price": 180,
-      "stock": 12,
-      "description": "Producto elaborado con ingredientes 100% orgánicos.",
-      "imgsrc": "https://dav-leda.github.io/images-bakery/donuts-choco.jpg",
-      "qty": 3,
-      "subtotal": 540
-     }
-    ]
-   },
-   {
-      "timestamp": "martes, 20 de junio de 2023, 13:25hs.",
-      "total": 700,
+[
+  {
+    "id": "4",
+    "firstname": "Linus",
+    "lastname": "Octocat",
+    "username": "user1",
+    "password": "$2a$08$xUuXJym2o2OZUU3l3g/mEeasbeditdtN6Cp7LBVujS.H.9WJkeJaS",
+    "email": "linus@octocat.com",
+    "avatar": "https://dav-leda.github.io/api/images/avatar-mac.png",
+    "isAdmin": false,
+    "orders": [
+    {
+      "timestamp": "jueves, 22 de junio de 2023, 13:37hs.",
+      "total": 2940,
       "products": [
-        {
-          "id": "4",
-          "name": "Muffin de manzana",
-          "price": 350,
-          "stock": 12,
-          "description": "Producto elaborado con ingredientes 100% orgánicos.",
-          "imgsrc": "https://dav-leda.github.io/images-bakery/muffin-manzana.jpg",
-          "qty": 2,
-          "subtotal": 700
-        }
+      {
+        "id": "18",
+        "name": "Lemon Pie",
+        "price": 1200,
+        "stock": 12,
+        "description": "Producto elaborado con ingredientes 100% orgánicos.",
+        "imgsrc": "https://dav-leda.github.io/images-bakery/apple-pie.jpg",
+        "qty": 2,
+        "subtotal": 2400
+      },
+      {
+        "id": "16",
+        "name": "Donuts de chocolate",
+        "price": 180,
+        "stock": 12,
+        "description": "Producto elaborado con ingredientes 100% orgánicos.",
+        "imgsrc": "https://dav-leda.github.io/images-bakery/donuts-choco.jpg",
+        "qty": 3,
+        "subtotal": 540
+      }
       ]
-    }
-  ]
-}
+    },
+    {
+        "timestamp": "martes, 20 de junio de 2023, 13:25hs.",
+        "total": 700,
+        "products": [
+          {
+            "id": "4",
+            "name": "Muffin de manzana",
+            "price": 350,
+            "stock": 12,
+            "description": "Producto elaborado con ingredientes 100% orgánicos.",
+            "imgsrc": "https://dav-leda.github.io/images-bakery/muffin-manzana.jpg",
+            "qty": 2,
+            "subtotal": 700
+          }
+        ]
+      }
+    ]
+  }
+]
 ```
-Como habrán visto, el password está _hasheado_. El password real es __test123__, lo que se guardó en MockAPI es un _hash_ de ese password. En general es considerado una buena práctica guardar los passwords en el backend en forma de _hash_ __para que ni siquiera el admin pueda saber cuáles son los passwords ingresados por los usuarios__ (ya que el _hashing_, a diferencia de la encriptación, es irreversible). No es necesario que lo hagan de esta forma, pero si quieren hacerlo pueden encontrar las instrucciones [acá](https://frontendlab.vercel.app/vue/simulando-un-login/#encriptacion-del-password).
+Si se fijan van a ver que el password está _hasheado_. El password real es __test123__, lo que se guardó en MockAPI es un _hash_ de ese password. En general es considerado una buena práctica guardar los passwords en el backend en forma de _hash_ __para que ni siquiera el admin pueda saber cuáles son los passwords ingresados por los usuarios__ (ya que el _hashing_, a diferencia de la encriptación, es irreversible). No es necesario que lo hagan de esta forma, pero si quieren hacerlo pueden encontrar las instrucciones [acá](https://frontendlab.vercel.app/vue/simulando-un-login/#encriptacion-del-password).
 
 
 <hr>
