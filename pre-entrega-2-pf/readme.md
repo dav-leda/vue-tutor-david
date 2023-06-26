@@ -440,7 +440,7 @@ Esto es porque traer al frontend __todos los datos de todos los usuarios incluye
 
 La única información que debería llegarle al frontend son los datos del usuario que está intentando hacer Login, __no de todos los usuarios__. Para poder pedirle a MockAPI únicamente este dato deben usar [search params](https://github.com/mockapi-io/docs/wiki/Code-examples#filtering). 
 
-También se puede hacer esto mismo usando la sintaxis para [query strings](https://www.semrush.com/blog/url-parameters/), con un `?` luego del enpoint, luego el nombre de la propiedad a buscar (en este caso es |`username`), luego un `=` y luego el dato que se quiere buscar (en este caso, lo que ingresó el usuario en el formulario de Login, o sea, `this.form.username`):
+También se puede hacer esto mismo usando la sintaxis para [query strings](https://www.semrush.com/blog/url-parameters/), con un `?` luego del enpoint, luego el nombre de la propiedad a buscar (en este caso es `username`), luego un `=` y luego el dato que se quiere buscar (en este caso, lo que ingresó el usuario en el formulario de Login, o sea, `this.form.username`):
 
 ```js
 const endpoint = baseUrl + '/users?username=' + this.form.username
