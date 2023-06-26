@@ -500,7 +500,7 @@ En el caso del Signup, las validaciones deben ser: que el nombre no sea ni demas
 
 
 
-__14. Bloqueos de navegación:__ Sería bueno incluir alguna forma de bloquear el ingreso forzado a la aplicación. Esto ocurre cuando un usuario __que no está loggeado__ ingresa a la ruta `/admin` solamente ingresando la URL en la barra de navegación del browser:
+__14. Bloqueos de navegación:__ Sería bueno incluir alguna forma de bloquear el ingreso forzado a la vista de Admin si, por ejemplo, un usuario __que no está loggeado__ ingresa a la ruta `/admin` solamente poniendo la URL de la ruta en la barra de navegación del browser:
 
 http://localhost:5173/admin
 
