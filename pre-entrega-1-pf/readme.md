@@ -146,10 +146,62 @@ __12. Nombres de los componentes:__ A diferencia de Vue CDN, en [Vue SFC](https:
 
 __13. Imágenes de productos:__ Las imágenes de los productos también deberían provenir de una fuente externa. Poner las imágenes de los productos en el directorio `/assets` [les puede traer muchos problemas](https://frontendlab.vercel.app/vue/fetch-en-vue/#usando-imagenes-en-un-e-commerce) como, por ejemplo, que el path relativo de la imagen deje de funcionar al pasarlo de un componente a otro mediante `props`. El directorio `/assets` debe ser usado únicamente para las imágenes que no cambian (logos, banners, imágenes de fondo), no para las que cambian (productos, avatar de los usuarios, etc).
 
+__14. Lazy loading de imágenes:__ También les recomiendo que para la carga de imágenes usen [lazy loading](https://frontendlab.vercel.app/vue/lazy-loading/). Esta técnica permite evitar el efecto "cortina" en la carga de imágenes pesadas, y también hace que las imágenes se carguen más rápido.
 
-__14. Carrito:__ Cada vez que el usuario clickea en el botón de agregar al carrito el objeto con la información del producto debería agregarse al array del carrito. El problema es que el componente de la card (ProductCard) y el componente del carrito (CartTable) no tienen relación directa, y [estar pasando esta información entre __componentes no emparentados__ mediante props y emits](https://frontendlab.vercel.app/vue/props-y-emits/#comunicacion-entre-componentes-no-emparentados) es muy complicado y propenso a errores.
+__15. Carrito:__ Cuando el usuario clickea en el botón _Agregar al carrito_ en la _card_ de un producto, si es la primera vez que clickea, al hacer el _push_ al array de carrito __primero hay que agregarle la propiedad *cantidad*__ (o *quantity*, que se suele abreviar como *qty*), es decir, la cantidad de unidades de ese producto, __y la propiedad *total*__ (o *totalPrice*, o *subtotal*), es decir, el costo total de todas las unidades de ese producto, que al comienzo va a ser igual al precio, porque la cantidad de unidades es 1.
 
-Por lo tanto, __la información del carrito debería ser accesible globalmente, no ser pasada de componente a componente__. La forma usual de hacer esto en Vue es con alguna herramienta de administración de estado global como [Vuex](https://vuex.vuejs.org/) o [Pinia](https://pinia.vuejs.org/). Vuex lo vamos a ver recién al final del curso, así que por ahora pueden usar una [store](https://frontendlab.vercel.app/vue/provide-mixins-stores/#stores) simple:
+Para agregar nuevas propiedades a un objeto deben usar el [spread operator](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Operators/Spread_syntax), usando los tres puntos: `...product`
+
+```js
+methods: {
+  addToCart(product) {
+    this.cart.push({
+      ...product,
+      qty: 1, 
+      subtotal: product.price
+    })    
+  }
+}
+```
+
+Luego, cuando el usuario clickea por segunda vez (para agregar otra unidad) __únicamente hay que cambiar la cantidad de unidades (`qty`) y el costo total (`subtotal`), pero no volver a pushear el objeto en el array__. Para esto primero deben chequear si el producto ya está dentro del array del carrito. Si no está, hacer el _push_, y si está, modificar cantidad y subtotal:
+
+```js
+methods: {
+
+  findById(id) {
+    return this.cart.find(item => item.id === id)
+  },
+
+  addToCart(product) {
+    // Buscar el producto en el carrito:
+    const inCart = this.findById(product.id)
+    
+    // Si NO está en el carrito, hacer el push
+    if (!inCart) {
+      this.cart.push({
+        ...product,
+        qty: 1,
+        subtotal: product.price
+      })  
+      
+    // Y si ya está en el carrito modificar cantidad y subtotal  
+    } else {
+      inCart.qty++
+      inCart.subtotal = inCart.price * inCart.qty
+    }
+  }
+}
+```
+
+Recuerden que en JavaScript los objetos se guardan en memoria por referencia. Es decir que un mismo objeto puede ser referenciado por distintos nombres. En este caso el objeto del producto es referenciado tanto por el nombre `product` como por el nombre `inCart` (porque el método `find` retorna el objeto, pero no crea un objeto nuevo). Entonces, al modificar una propiedad de `inCart` automáticamente se modifica esa misma propiedad en `product` en el array del carrito.
+
+De todas formas, creo que lo más claro para el usuario sería modificar la cantidad de unidades con un contador, y no clickeando varias veces en el botón de _agregar_. Si quieren hacerlo con un contador pueden seguir las instrucciones que están [acá](https://frontendlab.vercel.app/vue/carrito/#agregar-productos-al-carrito).
+
+
+__16. Store para el carrito:__ Otro problema con el que se van a encontrar al hacer la lógica del carrito es que el componente de la card (ProductCard) donde está el botón de _agregar_ y el componente del carrito (CartComponent) donde se muestra el producto agregado __no siempre tienen relación directa__, y [estar pasando esta información entre componentes no emparentados mediante props y emits](https://frontendlab.vercel.app/vue/props-y-emits/#comunicacion-entre-componentes-no-emparentados) es muy complicado y propenso a errores.
+
+Por lo tanto, __la información del carrito debería ser accesible globalmente, no ser pasada de componente a componente__. La forma usual de hacer esto en Vue es con alguna herramienta de administración de estado global como [Vuex](https://vuex.vuejs.org/) o [Pinia](https://pinia.vuejs.org/). Vuex lo vamos a ver recién al final del curso, así que por ahora pueden usar una [store](https://frontendlab.vercel.app/vue/provide-mixins-stores/#stores) simple en un archivo `.js` (no `.vue` aparte), dentro del directorio `/src/stores`:
 
 ```js
 // src/stores/cartStore.js
@@ -166,21 +218,93 @@ export const cartStore = {
     return this.cart.reduce((total, item) => total + item.subtotal, 0)
   },
   
-  addToCart(product) {
-    this.cart.push({
-      ...product,
-      qty: 1, 
-      subtotal: product.price
-    })    
+  findById(id) {
+    return this.cart.find(item => item.id === id)
   },
+
+  addToCart(product) {
+    const inCart = this.findById(product.id)
+    
+    if (!inCart) {
+      this.cart.push({
+        ...product,
+        qty: 1,
+        subtotal: product.price
+      })  
+      
+    } else {
+      inCart.qty++
+      inCart.subtotal = inCart.price * inCart.qty
+    }
+  }
 }
 ```
 
-Acá pueden ver [instrucciones más detalladas](https://frontendlab.vercel.app/vue/carrito/) sobre cómo usar una _store_ para el carrito. __No es obligatorio que lo hagan de esta forma__, se los paso únicamente por si les sirve como guía.
+Y luego en el componente deben declarar la _store_ dentro de _data_ para que se vuelva [reactiva](https://frontendlab.vercel.app/javascript/reactividad/#reactividad-en-vue-js):
 
-__15. Login:__ Les paso también [estas instrucciones](https://frontendlab.vercel.app/vue/simulando-un-login/) para crear el componente de Login. Nuevamente, __no es obligatorio que lo hagan como dice ahí__, se los paso únicamente por si les sirve.
+```html
+<template>
+  <div>
 
-__16. Signup (registro de usuarios):__ Y les paso este otro [tutorial sobre cómo hacer el componente de Signup](https://frontendlab.vercel.app/vue/simulando-un-signup/). Tampoco es obligatorio que lo hagan tal cual como dice ahí.
+    <header>
+      <h4>{{ product.title }}</h4>
+      <p>$ {{ product.price }}</p>
+    </header>
+
+    <footer>  
+      <button @click="addToCart" :disabled="added" :class="btnColor">
+        {{ added ? 'Agregado' : 'Agregar al carrito' }}
+      </button>
+    </footer>
+    
+  </div>
+</template>
+
+<script>
+
+// Importar la store:
+import { cartStore } from '@/stores/cartStore'
+
+export default {
+
+  name: 'ProductCard',
+
+  props: {
+    product: {
+      id: Number,
+      title: String,
+      price: Number
+    }
+  },
+
+  data: () => ({ 
+    // Declarar la store:
+    cartStore
+  }),
+
+  computed: {
+    added() {
+      return this.cartStore.findById(this.product.id)
+    },
+    btnColor() {
+      return this.added ? 'btn-secondary' : 'btn-primary'
+    }
+  },
+
+  methods: {
+    addToCart() {
+      this.cartStore.addToCart(this.product)
+    }
+  }
+}
+</script>
+```
+
+Acá pueden ver [instrucciones más detalladas](https://frontendlab.vercel.app/vue/carrito/) sobre cómo usar una _store_ para el carrito. __No es obligatorio que lo hagan de esta forma__, se los paso únicamente por si les sirve como guía. Pero como van a ver más adelante, las _stores_ tienen una estructura bastante parecida a la de Vuex o Pinia, así que __al hacerlo de esta forma luego les va a resultar más fácil pasar a Vuex__.
+
+__17. Login:__ Les paso también [estas instrucciones](https://frontendlab.vercel.app/vue/simulando-un-login/) para crear el componente de Login. Nuevamente, __no es obligatorio que lo hagan como dice ahí__, se los paso únicamente por si les sirve.
+
+__18. Signup (registro de usuarios):__ Y les paso este otro [tutorial sobre cómo hacer el componente de Signup](https://frontendlab.vercel.app/vue/simulando-un-signup/). Tampoco es obligatorio que lo hagan tal cual como dice ahí.
 
 <hr>
 
