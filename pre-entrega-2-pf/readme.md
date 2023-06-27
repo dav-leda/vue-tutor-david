@@ -380,9 +380,9 @@ async signupUser() {
 }
 ```
 
-__12. Timestamp:__ El array de pedidos debería tener 3 propiedades: __timestamp__ (el día y hora en que fue realizado el pedido), __total__ (el costo total del pedido) y __products__ (un array que contiene el detalle de cada producto comprado).
+__12. Timestamp:__ Cada objeto dentro del array de pedidos debería tener 3 propiedades: __timestamp__ (el día y hora en que fue realizado el pedido), __total__ (el costo total del pedido) y __products__ (un array que contiene el detalle de cada producto comprado).
 
-Para formatear la fecha (timestamp) pueden usar esta _helper function_ y ponerla en un archivo `.js` aparte (la convención es poner este tipo de funciones en un directorio llamado `/utils` dentro de `/src`):
+Para formatear la fecha (_timestamp_) pueden usar esta _helper function_ y ponerla en un archivo `.js` aparte (la convención es poner este tipo de funciones en un directorio llamado `/utils` dentro de `/src`):
 
 ```js
 // src/utils/helpers.js
