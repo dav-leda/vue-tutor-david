@@ -442,15 +442,16 @@ export default {
         // Obtener el usuario en MockAPI
         // MockAPI crea un endpoint distinto para cada ID del usuario
         const endpoint = `${baseUrl}/users/${this.userStore.user.id}`;
-        const user = await ax.get(endpoint)
-        
+        const getUser = await ax.get(endpoint)
+        const user = getUser[0]
+    
         // Una vez que tenemos el objeto user
         // hacer un push al array orders dentro del objeto:
-        user.orders.push(order)
+        user && user.orders.push(order)
          
         // Actualizar el objeto del usuario en MockAPI con PUT
-        const res = await ax.put(endpoint, user)
-        console.log(res)
+        const updateUser = await ax.put(endpoint, user)
+        console.log(updateUser)
 
         // Mostrar un mensaje de confirmación de la compra
         // Puede ser en una modal o en una nueva vista
@@ -473,8 +474,9 @@ Sería bueno que para chequear si existe un usuario con el nombre (o email) y pa
 ```js
 const endpoint = baseUrl + '/users'
 
-// Traten de NO hacer esto:
 const users = await ax.get(endpoint)
+
+// Traten de NO hacer esto:
 const user = users.find(user => user.username === this.form.username) 
 ```
 
