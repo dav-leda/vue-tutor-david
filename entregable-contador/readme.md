@@ -1,7 +1,7 @@
 
 # Curso Vue.js 💻️ 🛠️
 ## Tutor: David Leda
-
+### Entregable: Contador
 ---
 
 Hola 🙋‍♂️️ Aquí les paso algunas recomendaciones para el entregable 1: __Contador con Vue__.

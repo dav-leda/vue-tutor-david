@@ -1,6 +1,6 @@
 # Curso Vue.js 💻️ 🛠️
 ## Tutor: David Leda
-
+### Entregable: Componentes
 ---
 
 Hola 🙋‍♂️️ Aquí les paso algunas recomendaciones para el entregable 2: __Componentes__.

@@ -1,5 +1,6 @@
 # Curso Vue.js 💻️ 🛠️
 ## Tutor: David Leda
+### Entregable: Formulario
 ---
 
 
@@ -79,11 +80,14 @@ export default {
 __7. Filtros de vista:__ Recuerden que si están usando Vue 3 los _filters_ no les van a funcionar, ya que [fueron deprecados](https://v3-migration.vuejs.org/breaking-changes/filters.html#filters). En Vue 3 pueden ser reemplazados por `methods`, que funcionan igual:
 
 ```js
+// En Vue 2:
 filters: {
   capitalize(string) {
     return string.replace(/\b\w/g, first => first.toUpperCase())
   }
 },
+
+// En Vue 3:
 methods: {
   capitalize(string) {
     return string.replace(/\b\w/g, first => first.toUpperCase())
