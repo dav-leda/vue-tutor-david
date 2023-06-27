@@ -168,7 +168,8 @@ export default {
   }),
 
   async created() {
-    this.products = await ax.get(endpoint)
+    const products = await ax.get(endpoint)
+    this.products = products ? products : []
   }
 }
 ```
@@ -193,7 +194,7 @@ export default {
   methods: {
     async addNewProduct() {
       const res = await ax.post(endpoint, someProduct)
-      console.log(res)
+      console.log({res})
     }
   }
 }
@@ -320,7 +321,8 @@ export default {
     if (id === 'new-product') {
       this.product = placeholderProduct
     } else {
-      this.product = await ax.get(endpoint)
+      const product = await ax.get(endpoint)
+      this.product = product ? product : null
     }
   }
 }
@@ -442,16 +444,15 @@ export default {
         // Obtener el usuario en MockAPI
         // MockAPI crea un endpoint distinto para cada ID del usuario
         const endpoint = `${baseUrl}/users/${this.userStore.user.id}`;
-        const getUser = await ax.get(endpoint)
-        const user = getUser[0]
+        const user = await ax.get(endpoint)
     
         // Una vez que tenemos el objeto user
         // hacer un push al array orders dentro del objeto:
         user && user.orders.push(order)
          
         // Actualizar el objeto del usuario en MockAPI con PUT
-        const updateUser = await ax.put(endpoint, user)
-        console.log(updateUser)
+        const updatedUser = await ax.put(endpoint, user)
+        console.log({updatedUser})
 
         // Mostrar un mensaje de confirmación de la compra
         // Puede ser en una modal o en una nueva vista
@@ -482,7 +483,7 @@ const user = users.find(user => user.username === this.form.username)
 
 Esto es porque traer al frontend __todos los datos de todos los usuarios incluyendo sus passwords__ es considerado una mala práctica, porque de esta forma cualquier usuario que sepa usar las Dev Tools del browser __podría tener acceso a todos los passwords de todos los usuarios__ 🤦
 
-La única información que debería llegarle al frontend son los datos del usuario que está intentando hacer Login, __no de todos los usuarios__. Para poder pedirle a MockAPI únicamente este dato deben usar [search params](https://github.com/mockapi-io/docs/wiki/Code-examples#filtering). 
+La única información que const user = getUser[0] debería llegarle al frontend son los datos del usuario que está intentando hacer Login, __no de todos los usuarios__. Para poder pedirle a MockAPI únicamente este dato deben usar [search params](https://github.com/mockapi-io/docs/wiki/Code-examples#filtering). 
 
 También se puede hacer esto mismo usando la sintaxis para [query strings](https://www.semrush.com/blog/url-parameters/), con un `?` luego del enpoint, luego el nombre de la propiedad a buscar (en este caso es `username`), luego un `=` y luego el dato que se quiere buscar (en este caso, lo que ingresó el usuario en el formulario de Login, o sea, `this.form.username`):
 
@@ -490,7 +491,7 @@ También se puede hacer esto mismo usando la sintaxis para [query strings](https
 const endpoint = baseUrl + '/users?username=' + this.form.username
 ```
 
-MockAPI siempre retorna un array, y si no encuentra nada, retorna un array vacío. Por eso la respuesta al _query_ es el pimer elemento del array (`res[0]`). 
+En las _queries_ MockAPI siempre retorna un array, y si no encuentra nada, retorna un array vacío. Por eso la respuesta al _query_ es el pimer elemento del array (`res[0]`). 
 
 Entonces, el _method_ para el Login podría quedar así:
 
@@ -504,7 +505,7 @@ async loginUser() {
 
   const res = await ax.get(endpoint)
 
-  // MockAPI siempre retorna un array
+  // En las queries MockAPI siempre retorna un array
   // La respuesta al query es el pimer elemento del array
   // Si no encuentra nada, retorna un array vacío
   const user = res[0]
