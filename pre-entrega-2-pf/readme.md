@@ -265,6 +265,8 @@ Luego de hacer Login como admin van a ver que en el dropdown del usuario aparece
 *Si quieren probar la opción de borrar productos por favor haganlo con alguno que hayan creado ustedes, por favor no borren los productos listados, así no tengo que volver a cargarlos.* 🙏️ 🙏️ 🙏️ 
 
 
+
+
 __11. Tabla de productos:__ Como ven, en esa sección los productos se muestran en una tabla, con un botón para editar o borrar cada uno. Para obtener el array de productos en esta tabla tienen que hacer una nueva petición a MockAPI en `created()`. Si le pasan este array por _props_ desde otro componente (por ejemplo, desde App.vue o HomeView.vue) van a tener un problema porque las _props_ [no pueden ser mutadas en forma directa](https://michaelnthiessen.com/avoid-mutating-prop-directly/), y dentro del componente de la tabla el array de productos va a ser mutado (por ejemplo, al agregar o borrar algún producto):
 
 ```js
@@ -285,7 +287,8 @@ export default {
 
   methods: {
     async getProducts() {
-      this.products = await ax.get(endpoint)
+      const products = await ax.get(endpoint)
+      this.products = products ? products : []
     }
   }
 }
