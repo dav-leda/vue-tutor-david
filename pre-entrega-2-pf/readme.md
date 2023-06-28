@@ -243,6 +243,7 @@ Al final de esta página pueden ver un ejemplo de cómo podría quedar la estruc
 
 
 
+
 __10. ABM de productos__: La consigna dice:
 
 __*Crear un recurso en el backend para listar productos o servicios, incorporando los métodos (GET, POST, PUT, DELETE).*__
@@ -263,7 +264,34 @@ Luego de hacer Login como admin van a ver que en el dropdown del usuario aparece
 
 *Si quieren probar la opción de borrar productos por favor haganlo con alguno que hayan creado ustedes, por favor no borren los productos listados, así no tengo que volver a cargarlos.* 🙏️ 🙏️ 🙏️ 
 
-Para la vista de agregar un nuevo producto y de actualizar un producto sería bueno que __reutilicen el mismo componente__ cambiando únicamente el _id_ de la ruta:
+
+__11. Tabla de productos:__ Como ven, en esa sección los productos se muestran en una tabla, con un botón para editar o borrar cada uno. Para obtener el array de productos en esta tabla tienen que hacer una nueva petición a MockAPI en `created()`. Si le pasan este array por _props_ desde otro componente (por ejemplo, desde App.vue o HomeView.vue) van a tener un problema porque las _props_ [no pueden ser mutadas en forma directa](https://michaelnthiessen.com/avoid-mutating-prop-directly/), y dentro del componente de la tabla el array de productos va a ser mutado (por ejemplo, al agregar o borrar algún producto):
+
+```js
+import ax from 'dedalo-ax'
+
+const { VITE_API_URL: baseUrl } = import.meta.env
+const endpoint = baseUrl + '/products'
+
+export default {
+
+  data: () => ({
+    products: []
+  }),
+
+  async created() {
+    await this.getProducts()
+  },
+
+  methods: {
+    async getProducts() {
+      this.products = await ax.get(endpoint)
+    }
+  }
+}
+```
+
+__12. Componente para agregar o actualizar productos:__ Para la vista de agregar un nuevo producto y de actualizar un producto sería bueno que __reutilicen el mismo componente__ cambiando únicamente el _id_ de la ruta:
 
 En Vue Router:
 
@@ -328,7 +356,7 @@ export default {
 }
 ```
 
-__11. Pedidos:__ La consigna dice:
+__13. Pedidos:__ La consigna dice:
 
 __*Crear un último recurso que será el carrito, integrando GET y POST para realizar y revisar pedidos.*__
 
@@ -382,7 +410,9 @@ async signupUser() {
 }
 ```
 
-__12. Timestamp:__ Cada objeto dentro del array de pedidos debería tener 3 propiedades: __timestamp__ (el día y hora en que fue realizado el pedido), __total__ (el costo total del pedido) y __products__ (un array que contiene el detalle de cada producto comprado).
+
+
+__14. Timestamp:__ Cada objeto dentro del array de pedidos debería tener 3 propiedades: __timestamp__ (el día y hora en que fue realizado el pedido), __total__ (el costo total del pedido) y __products__ (un array que contiene el detalle de cada producto comprado).
 
 Para formatear la fecha (_timestamp_) pueden usar esta _helper function_ y ponerla en un archivo `.js` aparte (la convención es poner este tipo de funciones en un directorio llamado `/utils` dentro de `/src`):
 
@@ -408,7 +438,9 @@ export function formattedDate() {
 ```
 Otra opción es guardar en el backend la fecha en bruto (`new Date()`) y luego formatearla en el momento de mostrarla.
 
-__13. Guardar un pedido:__ Para agregar un nuevo pedido dentro del array __no pueden usar POST, deben usar PUT__. Si usan POST estarían generando un nuevo usuario, pero lo que deben hacer es modificar una propiedad dentro del objeto del usuario (o sea, la propiedad __orders__).
+
+
+__15. Guardar un pedido:__ Para agregar un nuevo pedido dentro del array __no pueden usar POST, deben usar PUT__. Si usan POST estarían generando un nuevo usuario, pero lo que deben hacer es modificar una propiedad dentro del objeto del usuario (o sea, la propiedad __orders__).
 
 El _method_ para hacer la petición PUT podría ser así:
 
@@ -464,7 +496,9 @@ export default {
 ```
 
 
-__14. Login y Signup:__ La consigna dice:
+
+
+__16. Login y Signup:__ La consigna dice:
 
 __*Crear un Login y Registro de usuarios utilizando los métodos GET y POST.*__
 
@@ -539,13 +573,15 @@ Aunque lo que estamos haciendo no sea un e-commerce real sería bueno que lo hag
 Y recuerden que la vista de Login debe mostrarse al cliquear en el botón (o ícono) de Login, __no en la vista inicial__. Esto es porque en un e-commerce (a diferencia de una red social o el sitio de un banco) __lo primero que el usuario debe ver son los productos, sin tener que loggearse para poder verlos__. El Login se hace recién cuando el usuario finaliza la compra (o antes, si el usuario quiere).
 
 
-__15. Validaciones:__ Tanto el Login como el Signup deben tener validaciones. La validación del Login es que haya un usuario con el nombre (o e-mail) ingresado y que el password coincida con el registrado en el backend. Las instrucciones sobre cómo hacer esto las pueden encontrar [acá](https://frontendlab.vercel.app/vue/simulando-un-login/) (no es obligatorio que lo hagan de esta forma, se los paso únicamente por si les sirve como guía).
+
+
+__17. Validaciones:__ Tanto el Login como el Signup deben tener validaciones. La validación del Login es que haya un usuario con el nombre (o e-mail) ingresado y que el password coincida con el registrado en el backend. Las instrucciones sobre cómo hacer esto las pueden encontrar [acá](https://frontendlab.vercel.app/vue/simulando-un-login/) (no es obligatorio que lo hagan de esta forma, se los paso únicamente por si les sirve como guía).
 
 En el caso del Signup, las validaciones deben ser: que el nombre no sea ni demasiado corto ni demasiado largo, que el formato de e-mail sea correcto y que el password tenga algún tipo de condición (por ejemplo: al menos una mayúscula, al menos un número o al menos un guión). En el Signup también sería bueno chequear si no hay ya un usuario previamente registrado con ese nombre (o email). Las instrucciones sobre cómo hacer esto las pueden encontrar [acá](https://frontendlab.vercel.app/vue/simulando-un-signup/#simulando-un-signup).
 
 
 
-__16. Bloqueos de navegación:__ Sería bueno incluir alguna forma de bloquear el ingreso forzado a la vista de Admin si, por ejemplo, un usuario __que no está loggeado__ ingresa a la ruta `/admin` solamente poniendo la URL de la ruta en la barra de navegación del browser:
+__18. Bloqueos de navegación:__ Sería bueno incluir alguna forma de bloquear el ingreso forzado a la vista de Admin si, por ejemplo, un usuario __que no está loggeado__ ingresa a la ruta `/admin` solamente poniendo la URL de la ruta en la barra de navegación del browser:
 
 http://localhost:5173/admin
 
@@ -580,7 +616,7 @@ router.beforeEach((to, from, next) => {
 
 ```
 
-__17.__ Este es un ejemplo de cómo podría quedar la estructura de archivos del proyecto:
+__19.__ Este es un ejemplo de cómo podría quedar la estructura de archivos del proyecto:
 
 ```
 .
@@ -672,7 +708,7 @@ __17.__ Este es un ejemplo de cómo podría quedar la estructura de archivos del
 ```
 
 
-__18.__ Y acá pueden ver un ejemplo de cómo quedaría el JSON de usuarios en MockAPI sumándole el array de pedidos (orders):
+__20.__ Y acá pueden ver un ejemplo de cómo quedaría el JSON de usuarios en MockAPI sumándole el array de pedidos (orders):
 
 ```json
 [
@@ -733,7 +769,9 @@ __18.__ Y acá pueden ver un ejemplo de cómo quedaría el JSON de usuarios en M
 ]
 ```
 
-__19. Hash para el password:__ Si se fijan van a ver que el password está _hasheado_. El password real es __test123__, lo que se guardó en MockAPI es un _hash_ de ese password. En general es considerado una buena práctica guardar los passwords en el backend en forma de _hash_ __para que ni siquiera el admin pueda saber cuáles son los passwords ingresados por los usuarios__ (ya que el _hashing_, a diferencia de la encriptación, es irreversible). No es necesario que lo hagan de esta forma, pero si quieren hacerlo pueden encontrar las instrucciones [acá](https://frontendlab.vercel.app/vue/simulando-un-login/#encriptacion-del-password).
+
+
+__21. Hash para el password:__ Si se fijan van a ver que el password está _hasheado_. El password real es __test123__, lo que se guardó en MockAPI es un _hash_ de ese password. En general es considerado una buena práctica guardar los passwords en el backend en forma de _hash_ __para que ni siquiera el admin pueda saber cuáles son los passwords ingresados por los usuarios__ (ya que el _hashing_, a diferencia de la encriptación, es irreversible). No es necesario que lo hagan de esta forma, pero si quieren hacerlo pueden encontrar las instrucciones [acá](https://frontendlab.vercel.app/vue/simulando-un-login/#encriptacion-del-password).
 
 
 <hr>
