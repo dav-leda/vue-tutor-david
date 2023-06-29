@@ -525,7 +525,7 @@ La única información que const user = getUser[0] debería llegarle al frontend
 También se puede hacer esto mismo usando la sintaxis para [query strings](https://www.semrush.com/blog/url-parameters/), con un `?` luego del enpoint, luego el nombre de la propiedad a buscar (en este caso es `username`), luego un `=` y luego el dato que se quiere buscar (en este caso, lo que ingresó el usuario en el formulario de Login, o sea, `this.form.username`):
 
 ```js
-const endpoint = baseUrl + '/users?username=' + this.form.username
+const userQuery = baseUrl + '/users?username=' + this.form.username
 ```
 
 En las _queries_ MockAPI siempre retorna un array, y si no encuentra nada, retorna un array vacío. Por eso la respuesta al _query_ es el pimer elemento del array (`res[0]`). 
@@ -538,9 +538,9 @@ async loginUser() {
   const baseUrl = 'https://123456789.mockapi.io/api'
    
   // Usando template literals en lugar de +
-  const endpoint = `${baseUrl}/users?username=${this.form.username}`;
+  const userQuery = `${baseUrl}/users?username=${this.form.username}`;
 
-  const res = await ax.get(endpoint)
+  const res = await ax.get(userQuery)
 
   // En las queries MockAPI siempre retorna un array
   // La respuesta al query es el pimer elemento del array
