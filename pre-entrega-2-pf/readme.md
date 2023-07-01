@@ -159,7 +159,7 @@ Y en el componente:
 const { VITE_API_URL: baseUrl } = import.meta.env
 const endpoint = baseUrl + '/products'
 
-import ax from 'dedalo-ax'
+import { ax } from 'dedalo-ax'
 
 export default {
 
@@ -177,7 +177,7 @@ export default {
 Y para hacer un **POST**:
 
 ```js
-import ax from 'dedalo-ax'
+import { ax } from 'dedalo-ax'
 
 const { VITE_API_URL: baseUrl } = import.meta.env
 const endpoint = baseUrl + '/products'
@@ -270,7 +270,7 @@ Luego de hacer Login como admin van a ver que en el dropdown del usuario aparece
 __11. Tabla de productos:__ Como ven, en esa sección los productos se muestran en una tabla, con un botón para editar o borrar cada uno. Para obtener el array de productos en esta tabla tienen que hacer una nueva petición a MockAPI en `created()`. Si le pasan este array por _props_ desde otro componente (por ejemplo, desde App.vue o HomeView.vue) van a tener un problema porque las _props_ [no pueden ser mutadas en forma directa](https://michaelnthiessen.com/avoid-mutating-prop-directly/), y dentro del componente de la tabla el array de productos va a ser mutado (por ejemplo, al agregar o borrar algún producto):
 
 ```js
-import ax from 'dedalo-ax'
+import { ax } from 'dedalo-ax'
 
 const { VITE_API_URL: baseUrl } = import.meta.env
 const endpoint = baseUrl + '/products'
@@ -336,7 +336,7 @@ const placeholderProduct = {
   imgsrc: 'https://dav-leda.github.io/images-bakery/chocotorta.jpg'
 }
 
-import ax from 'dedalo-ax'
+import { ax } from 'dedalo-ax'
 
 export default {
 
@@ -448,7 +448,7 @@ __15. Guardar un pedido:__ Para agregar un nuevo pedido dentro del array __no pu
 El _method_ para hacer la petición PUT podría ser así:
 
 ```js
-import ax from 'dedalo-ax'
+import { ax } from 'dedalo-ax'
 
 import { cartStore } from '@/stores/cartStore'
 import { userStore } from '@/stores/userStore'
