@@ -571,7 +571,7 @@ async loginUser() {
 }
 ```
 
-Aunque lo que estamos haciendo no sea un e-commerce real sería bueno que lo hagan de esta forma como buena práctica. 
+De todas formas, tengan en cuenta que las _queries_ a MockAPI funcionan como [filters](https://github.com/mockapi-io/docs/wiki/Code-examples#filtering), es decir, devuelven todas las coincidencias, incluso las coincidencias parciales (por ejemplo, si el nombre de usuario registrado es _user1_ y el usuario ingresa solamente _user_ MockAPI devuelve los datos de _user1_ 🤦‍♂️️). Pero bueno, no se le puede pedir más a MockAPI...
 
 Y recuerden que la vista de Login debe mostrarse al cliquear en el botón (o ícono) de Login, __no en la vista inicial__. Esto es porque en un e-commerce (a diferencia de una red social o el sitio de un banco) __lo primero que el usuario debe ver son los productos, sin tener que loggearse para poder verlos__. El Login se hace recién cuando el usuario finaliza la compra (o antes, si el usuario quiere).
 
