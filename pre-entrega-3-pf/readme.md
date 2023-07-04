@@ -32,6 +32,8 @@ createApp(App)
   .mount('#app')
 ```
 
+
+
 __5. Módulos de Vuex:__ Para crear los dos módulos (carrito y usuario) pueden hacerlo así:
 
 Dentro de __/src__ crean un directorio llamado __/stores__ y dentro de éste un archivo __index.js__:
@@ -85,6 +87,9 @@ export const user = {
 }
 ```
 La propiedad __namespaced__ es para que los _getters_ y las _actions_ de cada módulo puedan ser referenciados por el nombre del módulo (en este caso __user__).
+
+
+
 
 
 __6. Módulo del usuario:__ El módulo del usuario puede ser así (no es necesario que sea exactamente igual, depende de cómo hayan implementado la lógica del usuario en el proyecto):
@@ -151,6 +156,9 @@ Y los __getters__ obtienen algún valor a partir del estado, pero no modifican e
 
 Como ven, las __actions__ son similares a los __methods__ y los __getters__ son similares a las __computed__, mientras que __state__ es similar a __data__.
 
+
+
+
 __7. Vuex en los componentes:__ Ni el __state__ ni las __mutations__ de Vuex pueden ser accedidas en forma directa desde los componentes, sino a través de los __getters__ y las __actions__, usando los métodos __mapGetters__ y __mapActions__. Estos métodos deben ser importados en el componente donde sean usados.
 
 __mapGetters__ inserta los __getters__ de Vuex dentro de las __computed__ del componente y __mapActions__ inserta las __actions__ dentro de los __methods__:
@@ -198,7 +206,10 @@ export default {
 ```
 En el caso de que el nombre de una __action__ coincida con el de un __method__ deben declararlo con un nombre distinto (usando llaves en lugar de corchetes) para evitar que se superpongan (y lo mismo si tienen un __getter__ con el mismo nombre de una __computed__).
 
-__6. Módulo del carrito:__ Toda la lógica del carrito debería ser manejada por Vuex, no por los componentes, de lo contrario es posible que el carrito no les funcione bien (por ejemplo, si el estado del carrito es mutado en formas distintas desde cada componente).
+
+
+
+__8. Módulo del carrito:__ Toda la lógica del carrito debería ser manejada por Vuex, no por los componentes, de lo contrario es posible que el carrito no les funcione bien (por ejemplo, si el estado del carrito es mutado en formas distintas desde cada componente).
 
 Una forma posible de hacerlo es así (no es necesario que sea exactamente igual, depende de cómo hayan armado la lógica del carrito en el proyecto):
 
@@ -251,7 +262,10 @@ export const cart = {
 }
 ```
 
-__7. Getters:__  Como ven los __getters__ de Vuex son [funciones que retornan otras funciones](https://yeisondaza.com/currying-en-javascript-funciones-con-superpoderes), por eso se declaran con __arrow functions__ encadenadas. De todas formas, para invocarlos pueden hacerlo como con cualquier otro método:
+
+
+
+__9. Getters:__  Como ven los __getters__ de Vuex son [funciones que retornan otras funciones](https://yeisondaza.com/currying-en-javascript-funciones-con-superpoderes), por eso se declaran con __arrow functions__ encadenadas. De todas formas, para invocarlos pueden hacerlo como con cualquier otro método:
 
 En el componente:
 
@@ -268,7 +282,9 @@ removeFromCart: ({ commit, getters }, id) => {
 },
 ```
 
-__8. Vuex en Vue Router:__ Para acceder a los __getters__ de Vuex dentro de Vue Router pueden hacerlo así:
+
+
+__10. Vuex en Vue Router:__ Para acceder a los __getters__ de Vuex dentro de Vue Router pueden hacerlo así:
 
 ```js
 import { store } from '../stores'
