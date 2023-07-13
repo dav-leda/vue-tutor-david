@@ -17,3 +17,5 @@
 [Pre-entrega 2 - Proyecto Final](./pre-entrega-2-pf/)
 
 [Pre-entrega 3 - Proyecto Final](./pre-entrega-3-pf/)
+
+[Entregable Complementario: Vue 3](./entregable-vue-3/)
