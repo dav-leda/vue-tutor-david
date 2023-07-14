@@ -115,7 +115,8 @@ En el caso en que estén usando la __Composition API__ no es necesario anteponer
 
 ```html
 <input
-  name="email" 
+  name="email"
+  id="email"
   type="text"
   v-model="v$.email.$model"
 />
