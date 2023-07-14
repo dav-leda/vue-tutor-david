@@ -195,9 +195,11 @@ const rules = {
 
 Y luego los mensajes pueden ser mostrados en el template iterando sobre el array de errores o mostrando uno por vez (el primero del array):
 
+{% raw %}
 ```html
 <small>{{ v$.firstname.$errors[0]?.$message }}</small>
 ```
+{% endraw %}
 
 __10. Submit:__ Antes de enviar el formulario deben chequear que todos los campos cumplan con las validaciones. Para eso deben usar el método asíncrono `$validate`. Este método debe ser accedido mediante la propiedad `value` ya que internamente Vuelidate usa una `ref`:
 
