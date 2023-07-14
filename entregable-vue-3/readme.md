@@ -17,9 +17,9 @@ En cuanto a __Vue CLI 3__, es solamente una versión de [Vue CLI](https://cli.vu
 
 En cuanto a las versiones de Vue, recuerden que a partir del 31/12/2023 Vue 2 va a pasar al estado [End of Life](https://v2.vuejs.org/lts/), por lo cual lo más recomendable es dejar de usar Vue 2. Pero esto __no quiere decir que sea necesario dejar de usar la [Options API](https://frontendlab.vercel.app/vue/vue2-vue3/#options-api-vs-composition-api)__, es decir la forma de crear componentes de Vue con las opciones _data, props, computed, methods_, etc. La Options API puede seguir siendo usada con Vue 3. 
 
-Sin embargo, para este entegable deberían usar la __Composition API__, al menos en la forma híbrida que se vio en clase (combinando __setup()__ con __data()__). 
+Sin embargo, para este entegable deberían usar la __Composition API__. 
 
-Aunque la documentación de Vuelidate ofrece como opción esta forma híbrida, les recomiendo que usen únicamente la __Composition API__ (usando __ref__ o __reactive__ en lugar de __data()__ para generar reactividad) ya que esa forma híbrida suele ser usada únicamente como un paso intermedio entre Vue 2 y Vue 3, pero __no es la forma usual de usar Vue 3__, como pueden ver en los [ejemplos de la documentación de Vue](https://vuejs.org/examples/#crud).
+Aunque la documentación de Vuelidate ofrece la opción de combinar las dos APIs en forma híbrida (usando _setup()_ con _data()_) les recomiendo que usen únicamente la __Composition API__ (usando __ref__ o __reactive__ en lugar de __data()__ para generar reactividad) ya que esa forma híbrida suele ser usada únicamente como un paso intermedio entre Vue 2 y Vue 3, pero __no es la forma usual de usar Vue 3__, como pueden ver en los [ejemplos de la documentación de Vue](https://vuejs.org/examples/#crud).
 
 
 __4. Setup:__ Les recomiendo que usen `<script setup>` en lugar de la función `setup()` ya que actualmente esta es la forma más usual de usar Vue 3. Además, al usar `<script setup>` __no es necesario retornar un objeto reactivo__ para poder acceder a sus propiedades en el template, esto se da en forma automática. Otra ventaja de `<script setup>` es que __no es necesario declarar los componentes hijos dentro de *components*__. Con sólo importarlos ya están disponibles para ser usados:
