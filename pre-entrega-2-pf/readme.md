@@ -371,9 +371,11 @@ Hay algunos e-commerce (Mercado Libre) que también guardan la información del 
 
 El problema es que __el plan gratuito de MockAPI sólo permite crear 2 recursos, y ya usamos uno para usuarios y otro para productos__ 😬️
 
-La solución es que dentro del recurso de usuarios, en el objeto de cada usuario haya __un array de pedidos (orders)__ (al final de esta página pueden ver un ejemplo de cómo les quedaría el JSON de usuarios en MockAPI con este array de pedidos).
+Una solución posible es crear una nueva cuenta de MockApi con un recurso para pedidos que contenga un array vacío, e ir agregando los pedidos a ese array, incluyendo los datos del usuario que hizo el pedido.
 
-Este array de pedidos (__orders__) debe ser creado en el Signup, es decir, al registrar un usuario en MockAPI:
+Otra solución (y creo que esto tiene más sentido) es que dentro del recurso de usuarios, en el objeto de cada usuario haya __un array de pedidos (orders)__ (al final de esta página pueden ver un ejemplo de cómo les quedaría el JSON de usuarios en MockAPI con este array de pedidos).
+
+Este array de pedidos (__orders__) debería ser creado en el Signup, es decir, al registrar un usuario en MockAPI:
 
 ```js
 async signupUser() {
