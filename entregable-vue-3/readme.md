@@ -27,8 +27,8 @@ __4. Setup:__ Les recomiendo que usen `<script setup>` en lugar de la función `
 ```html
 <script setup lang="ts">
 
-import FormComponent from '@/components/FormComp.vue'
-import TableComponent from '@/components/TableComp.vue'
+import FormComponent from '@/components/FormComponent.vue'
+import TableComponent from '@/components/TableComponent.vue'
 
 import { reactive } from 'vue'
 import type { PropType } from 'vue'
@@ -65,8 +65,8 @@ pero no es obligatorio hacerlo de esta forma. -->
     
   <h1>Formulario con Vue 3</h1>
   
-  <FormComp @submit-form="addUser"/>
-  <TableComp :users="state.users"/>
+  <FormComponent @submit-form="addUser"/>
+  <TableComponent :users="state.users"/>
   
 </template>
 ```
